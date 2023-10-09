@@ -1,0 +1,44 @@
+/* .wrapper{
+    width: 100%;
+    max-width: max(90rem, 75%);
+    margin: auto;
+
+    // background-color: rgb(105, 105, 105);
+    padding: 2%;
+    
+    
+    @include mobile-small{
+        // background-color: rgb(255, 0, 0);
+        padding: 4%;
+    }
+    @include mobile{
+        // background-color: rgb(94, 255, 0);
+        padding: 4%;
+    }
+    @include tab{
+        // background-color: rgb(0, 247, 255);
+        padding: 3%;
+    }
+    @include desktop{
+        // background-color: rgb(204, 0, 255);
+        padding: 2%;
+    }
+}
+
+
+.row{
+    display: flex;
+    flex-direction: row;
+    
+    &--center{
+        justify-content: center;
+        align-items: center;
+    }
+
+    &--center--x{
+        justify-content: center;
+    }
+    &--center--y{
+        justify-content: center;
+    }
+} */

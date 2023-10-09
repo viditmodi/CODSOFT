@@ -1,0 +1,14 @@
+
+
+
+
+/* // Breakpoints for different screen sizes used in responsive.scss
+// Small Mobiles --- 0px - 360px
+// Mobiles --- 361px - 768px
+// Tabs --- 769px - 1024px
+// Desktop --- 1025px - 1920px
+// Large Screens --- Default CSS styles
+$breakpoint-mobile-small: 360px;
+$breakpoint-mobile: 768px;
+$breakpoint-tab: 1024px;
+$breakpoint-desktop: 1920px; */
