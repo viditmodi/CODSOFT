@@ -1,0 +1,44 @@
+.btn {
+  cursor: pointer;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.btn__push {
+  padding: 1rem 2rem;
+  border-radius: 50rem;
+  color: white;
+  transition: 0.2s ease-in-out;
+}
+.btn__push:active {
+  font-size: 1.5rem;
+}
+
+
+.btn__push--focus {
+  background-color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+}
+.btn__push--focus:hover,
+.btn__push--focus:focus {
+  box-shadow: inset 0.3rem 0.3rem 0.6rem rgb(255, 220, 155),
+    inset -0.3rem -0.3rem 0.6rem hsl(39, 100%, 25%);
+}
+.btn__push--focus:active {
+  box-shadow: inset -0.3rem -0.3rem 0.6rem rgb(255, 220, 155),
+    inset 0.3rem 0.3rem 0.6rem hsl(39, 100%, 25%);
+}
+
+.btn__push--nofocus {
+  background-color: transparent;
+  border: 2px solid var(--color-secondary);
+}
+.btn__push--nofocus:hover,
+.btn__push--nofocus:focus {
+  box-shadow: inset 0.3rem 0.3rem 0.6rem rgba(255, 255, 255, 0.8),
+    inset -0.3rem -0.3rem 0.6rem hsla(0, 0%, 0%, 0.6);
+}
+.btn__push--nofocus:active {
+  box-shadow: inset -0.3rem -0.3rem 0.6rem rgba(255, 255, 255, 0.8),
+    inset 0.3rem 0.3rem 0.6rem hsla(0, 0%, 0%, 0.6);
+}

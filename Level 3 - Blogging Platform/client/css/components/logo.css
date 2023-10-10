@@ -1,0 +1,13 @@
+.logo__conatiner{
+    width: 30%;
+    max-width: 10rem;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo__image{
+    height: 100%;
+    width: auto;
+}
