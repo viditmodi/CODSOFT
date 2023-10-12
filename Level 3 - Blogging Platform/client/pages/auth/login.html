@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+
+    <script src="../../templates/header.js"></script>
+    <title>Document</title>
+  </head>
+  <body onload="onLoadHandler()">
+    <header class="header" id="Header"></header>
+
+    <main class="auth-form__container">
+      <!-- <div class="login__banner">banner</div> -->
+      <form class="form auth-form" id="loginForm">
+        <h1 class="auth-form__heading form__heading heading heading--4">
+          Unlock the Portal to Your Creativity
+        </h1>
+
+        <input
+          type="text"
+          name="loginUsername"
+          id="loginUsername"
+          class="textbox textbox--auth auth-form__textbox"
+          placeholder="username or email"
+        />
+
+        <input
+          type="password"
+          name="loginPassword"
+          id="loginPassword"
+          class="textbox textbox--auth auth-form__textbox"
+          placeholder="Password"
+        />
+
+        <button
+          type="submit"
+          class="btn btn__push btn__push--focus auth-form__btn"
+        >
+          Login
+        </button>
+
+        <p class="auth-form__text">
+          Already a part of QuillCraft Community? <br /><a
+            href="/pages/auth/register.html"
+            >Register Here</a
+          >
+        </p>
+      </form>
+    </main>
+
+    <footer class="footer">This is Footer</footer>
+
+    <!-- red-f// OnLoadHandler -->
+    <script>
+      const loadData = {
+        logoURL: "../../assets/images/logo.png",
+        navBarData: [
+          {
+            link: "/",
+            text: "home",
+          },
+          {
+            link: "/pages/auth/login.html",
+            text: "login",
+            active: true,
+          },
+          {
+            link: "/pages/auth/register.html",
+            text: "register"
+          },
+        ],
+      };
+      const header = document.getElementById("Header");
+      const onLoadHandler = () => {
+        console.log("Login Page");
+        createHeader(header, loadData);
+      };
+    </script>
+
+    <!-- red-f// LoginForm Submit -->
+    <script>
+      const username = document.getElementById("loginUsername");
+      const password = document.getElementById("loginPassword");
+
+      const loginForm = document.getElementById("loginForm");
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const data = {
+          username: username.value,
+          password: password.value,
+        };
+        console.log(data);
+        // alert("submit")
+      });
+    </script>
+  </body>
+</html>

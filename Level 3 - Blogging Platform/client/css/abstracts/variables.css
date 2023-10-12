@@ -1,11 +1,14 @@
 :root {
-  /* --color: hsl(224, 76%, 65%); */
-  --primary-h: 24;
+  /* --color: hsl(224, 76%, 50%); */
+  --primary-h: 224;
   --primary-s: 100%;
-  --primary-l: 65%;
+  --primary-l: 50%;
   --color-primary: hsl(var(--primary-h), var(--primary-s), var(--primary-l));
-  --color-primary-dark: hsl(var(--primary-h), var(--primary-s), calc(var(--primary-l) - 20));
-  --color-primary-light: hsl(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 20));
+  --color-primary-dark: hsl(var(--primary-h), var(--primary-s), calc(var(--primary-l) - 20%));
+  --color-primary-light: hsl(var(--primary-h), var(--primary-s), calc(var(--primary-l) + 20%));
+
+  --color-bg: hsl(var(--primary-h), var(--primary-s), 95%);
+  --color-light: hsl(var(--primary-h), var(--primary-s), 98%);
   
 
   /* --color: hsl(25, 100%, 50%); */
@@ -13,8 +16,8 @@
   --secondary-s: 100%;
   --secondary-l: 50%;
   --color-secondary: hsl(var(--secondary-h), var(--secondary-s), var(--secondary-l));
-  --color-secondary-dark: hsl(var(--secondary-h), var(--secondary-s), calc(var(--secondary-l) - 20));
-  --color-secondary-light: hsl(var(--secondary-h), var(--secondary-s), calc(var(--secondary-l) + 20));
+  --color-secondary-dark: hsl(var(--secondary-h), var(--secondary-s), calc(var(--secondary-l) - 20%));
+  --color-secondary-light: hsl(var(--secondary-h), var(--secondary-s), calc(var(--secondary-l) + 20%));
 
 
 

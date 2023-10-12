@@ -4,9 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+
+    <script src="./templates/blogCard.js"></script>
     <title>QuillCraft Website</title>
   </head>
-  <body class="landing-bod">
+  <body class="landing-bod" onload="onLoadHandler()">
     <!--red-f// Banner Section -->
     <section class="banner">
       <div class="logo__conatiner banner__logo-container">
@@ -18,10 +24,10 @@
       </div>
       <nav class="banner__nav">
         <ul class="banner__nav-list">
-          <a href="#" class="banner__nav-link btn btn__push btn__push--focus"
+          <a href="/pages/auth/login.html" class="banner__nav-link btn btn__push btn__push--focus"
             ><li class="banner__nav-item">Login</li></a
           >
-          <a href="#" class="banner__nav-link btn btn__push btn__push--nofocus"
+          <a href="/pages/auth/register.html" class="banner__nav-link btn btn__push btn__push--nofocus"
             ><li class="banner__nav-item">Register</li></a
           >
         </ul>
@@ -40,10 +46,302 @@
     </section>
 
     <!--red-f// Blog Gallery Section -->
-    <section class="blog-gallery">Blog Gallery</section>
+    <section class="blog-gallery wrapper">
+      <div class="blog-gallery__heading">
+        <h2 class="blog-gallery__title heading heading--3">Featured Blogs</h2>
+        <p>toggle btn</p>
+      </div>
+
+      <div class="blog-gallery__grid" id="blogGallery">
+
+
+        <div class="blog-gallery__grid__card">
+          <div class="blog-gallery__grid__card--front">
+            <div class="blog-gallery__grid__card__image-container">
+              <img
+                src="https://images.unsplash.com/photo-1598124146163-36819847286d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8anBnfGVufDB8fDB8fHww&w=1000&q=80"
+                alt="image"
+                class="blog-gallery__grid__card__image"
+              />
+            </div>
+            <div class="blog-gallery__grid__card__content">
+              <!-- <div class="blog-gallery__grid__card__meta">
+                      <div class="blog-gallery__grid__card__category">category</div>
+                      <p class="blog-gallery__grid__card__metadata">
+                        <span class="material-symbols-outlined"> calendar_month </span
+                        >date
+                      </p>
+                      <p class="blog-gallery__grid__card__metadata">
+                        <span class="material-symbols-outlined"> thumb_up </span>likes
+                      </p>
+                    </div> -->
+
+              <h4 class="blog-gallery__grid__card__title">this is title</h4>
+              <p class="blog-gallery__grid__card__desc">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Voluptates sequi deserunt, magnam corporis recusandae ab maxime
+                a, incidunt quam et officiis ad nostrum labore, fugiat
+                cupiditate fugit sint repudiandae minus?
+              </p>
+
+              <div class="blog-gallery__grid__card__author">
+                <div class="blog-gallery__grid__card__author__image-container">
+                  <img
+                    src="https://images.unsplash.com/photo-1524550158212-33f2ff985344?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
+                    alt="author"
+                    class="blog-gallery__grid__card__author__image"
+                  />
+                </div>
+                <p class="blog-gallery__grid__card__author__name">
+                  author name
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="blog-gallery__grid__card--back">
+            <div class="blog-gallery__grid__card__category">category</div>
+            <div class="blog-gallery__grid__card__meta">
+              <p class="blog-gallery__grid__card__metadata">
+                <span class="material-symbols-outlined"> calendar_month </span
+                >date
+              </p>
+              <p class="blog-gallery__grid__card__metadata">
+                <span class="material-symbols-outlined"> thumb_up </span>likes
+              </p>
+              <p class="blog-gallery__grid__card__metadata">
+                <span class="material-symbols-outlined"> visibility </span>total
+                views
+              </p>
+              <p class="blog-gallery__grid__card__metadata">
+                <span class="material-symbols-outlined">
+                  <span class="material-symbols-outlined"> comment </span></span
+                >comments
+              </p>
+            </div>
+            <button class="btn">read</button>
+          </div>
+        </div>
+
+        <div class="blog-gallery__grid__card">
+          <div class="blog-gallery__grid__card--front">
+            <div class="blog-gallery__grid__card__image-container">
+              <img
+                src="https://images.unsplash.com/photo-1598124146163-36819847286d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8anBnfGVufDB8fDB8fHww&w=1000&q=80"
+                alt="image"
+                class="blog-gallery__grid__card__image"
+              />
+            </div>
+            <div class="blog-gallery__grid__card__content">
+              <!-- <div class="blog-gallery__grid__card__meta">
+                      <div class="blog-gallery__grid__card__category">category</div>
+                      <p class="blog-gallery__grid__card__metadata">
+                        <span class="material-symbols-outlined"> calendar_month </span
+                        >date
+                      </p>
+                      <p class="blog-gallery__grid__card__metadata">
+                        <span class="material-symbols-outlined"> thumb_up </span>likes
+                      </p>
+                    </div> -->
+
+              <h4 class="blog-gallery__grid__card__title">this is title</h4>
+              <p class="blog-gallery__grid__card__desc">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Voluptates sequi deserunt, magnam corporis recusandae ab maxime
+                a, incidunt quam et officiis ad nostrum labore, fugiat
+                cupiditate fugit sint repudiandae minus?
+              </p>
+
+              <div class="blog-gallery__grid__card__author">
+                <div class="blog-gallery__grid__card__author__image-container">
+                  <img
+                    src="https://images.unsplash.com/photo-1524550158212-33f2ff985344?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
+                    alt="author"
+                    class="blog-gallery__grid__card__author__image"
+                  />
+                </div>
+                <p class="blog-gallery__grid__card__author__name">
+                  author name
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="blog-gallery__grid__card--back">
+            <div class="blog-gallery__grid__card__category">category</div>
+
+            <div class="blog-gallery__grid__card__meta">
+              <p class="blog-gallery__grid__card__metadata">
+                <span class="material-symbols-outlined"> calendar_month </span>
+                <span>date.........................</span>
+                <span>............22/07/2001</span>
+              </p>
+              <p class="blog-gallery__grid__card__metadata">
+                <span class="material-symbols-outlined"> thumb_up </span>
+                <span>likes.........................</span>
+                <span>>............745</span>
+              </p>
+              <p class="blog-gallery__grid__card__metadata">
+                <span class="material-symbols-outlined"> visibility </span>
+                <span>total views.........................</span>
+                <span>>............745</span>
+              </p>
+              <p class="blog-gallery__grid__card__metadata">
+                <span class="material-symbols-outlined">
+                  <span class="material-symbols-outlined"> comment </span></span
+                >
+                <span>comments.........................</span>
+                <span>>............745</span>
+              </p>
+            </div>
+            <button class="btn btn--">read</button>
+          </div>
+        </div>
+
+        <div class="blog-gallery__grid__card">
+          <div class="blog-gallery__grid__card--front">
+            <div class="blog-gallery__grid__card__image-container">
+              <img
+                src="https://images.unsplash.com/photo-1598124146163-36819847286d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8anBnfGVufDB8fDB8fHww&w=1000&q=80"
+                alt="image"
+                class="blog-gallery__grid__card__image"
+              />
+            </div>
+            <div class="blog-gallery__grid__card__content">
+              <!-- <div class="blog-gallery__grid__card__meta">
+                      <div class="blog-gallery__grid__card__category">category</div>
+                      <p class="blog-gallery__grid__card__metadata">
+                        <span class="material-symbols-outlined"> calendar_month </span
+                        >date
+                      </p>
+                      <p class="blog-gallery__grid__card__metadata">
+                        <span class="material-symbols-outlined"> thumb_up </span>likes
+                      </p>
+                    </div> -->
+
+              <h4 class="blog-gallery__grid__card__title">this is title</h4>
+              <p class="blog-gallery__grid__card__desc">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Voluptates sequi deserunt, magnam corporis recusandae ab maxime
+                a, incidunt quam et officiis ad nostrum labore, fugiat
+                cupiditate fugit sint repudiandae minus?
+              </p>
+
+              <div class="blog-gallery__grid__card__author">
+                <div class="blog-gallery__grid__card__author__image-container">
+                  <img
+                    src="https://images.unsplash.com/photo-1524550158212-33f2ff985344?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
+                    alt="author"
+                    class="blog-gallery__grid__card__author__image"
+                  />
+                </div>
+                <p class="blog-gallery__grid__card__author__name">
+                  author name
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="blog-gallery__grid__card--back">
+            <div class="blog-gallery__grid__card__category">category</div>
+            <div class="blog-gallery__grid__card__meta">
+              <p class="blog-gallery__grid__card__metadata">
+                <span class="material-symbols-outlined"> calendar_month </span
+                >date
+              </p>
+              <p class="blog-gallery__grid__card__metadata">
+                <span class="material-symbols-outlined"> thumb_up </span>likes
+              </p>
+              <p class="blog-gallery__grid__card__metadata">
+                <span class="material-symbols-outlined"> visibility </span>total
+                views
+              </p>
+              <p class="blog-gallery__grid__card__metadata">
+                <span class="material-symbols-outlined">
+                  <span class="material-symbols-outlined"> comment </span></span
+                >comments
+              </p>
+            </div>
+            <button class="btn">read</button>
+          </div>
+        </div>
+
+       
+      </div>
+    </section>
+
+
+
     <!--red-f// Blogger Gallery Section -->
-    <section class="blogger-gallery">Bloggers Gallery</section>
+    <section class="blogger-gallery wrapper">Bloggers Gallery</section>
     <!--red-f// Footer Section -->
     <footer class="footer">This is Footer</footer>
+
+    <script>
+      const blogGallery = document.getElementById("blogGallery");
+      const blogsDataArray = [
+        {
+          blogID: "qwertyuiop",
+          thumbnail:
+            "https://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg",
+          title: "meet my orangutan",
+          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum at error sunt porro quaerat officia, vel, iusto nam in nulla dolorem quos, exercitationem saepe! Rem laboriosam voluptatem qui adipisci libero, molestiae sit praesentium corrupti earum officiis cumque natus asperiores? Non delectus possimus voluptatibus in numquam sequi earum tenetur odio repellendus?",
+          author: {
+            image:
+              "https://i.pinimg.com/236x/dd/97/3a/dd973ac116a977c8dd5296b0da504b8c.jpg",
+            name: "Krishna",
+          },
+          category: "WildLife",
+          metadata: {
+            publishedDate: new Date(),
+            likes: "785",
+            views: "74125",
+            comments: "56",
+          },
+        },
+        {
+          blogID: "asdfghjkl",
+          thumbnail:
+            "https://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg",
+          title: "meet my orangutan",
+          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum at error sunt porro quaerat officia, vel, iusto nam in nulla dolorem quos, exercitationem saepe! Rem laboriosam voluptatem qui adipisci libero, molestiae sit praesentium corrupti earum officiis cumque natus asperiores? Non delectus possimus voluptatibus in numquam sequi earum tenetur odio repellendus?",
+          author: {
+            image:
+              "https://i.pinimg.com/236x/dd/97/3a/dd973ac116a977c8dd5296b0da504b8c.jpg",
+            name: "Krishna",
+          },
+          category: "WildLife",
+          metadata: {
+            publishedDate: new Date(),
+            likes: "785",
+            views: "74125",
+            comments: "56",
+          },
+        },
+        {
+          blogID: "zxcvbnmasdf",
+          thumbnail:
+            "https://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg",
+          title: "meet my orangutan",
+          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum at error sunt porro quaerat officia, vel, iusto nam in nulla dolorem quos, exercitationem saepe! Rem laboriosam voluptatem qui adipisci libero, molestiae sit praesentium corrupti earum officiis cumque natus asperiores? Non delectus possimus voluptatibus in numquam sequi earum tenetur odio repellendus?",
+          author: {
+            image:
+              "https://i.pinimg.com/236x/dd/97/3a/dd973ac116a977c8dd5296b0da504b8c.jpg",
+            name: "Krishna",
+          },
+          category: "WildLife",
+          metadata: {
+            publishedDate: new Date(),
+            likes: "785",
+            views: "74125",
+            comments: "56",
+          },
+        },
+      ];
+     
+      const onLoadHandler = () => {
+        blogsDataArray.forEach((blogData) => {
+          createBlogCard(blogGallery, blogData);
+        });
+      };
+    </script>
   </body>
 </html>

@@ -11,10 +11,26 @@
 
 
 @import "./layout/banner.css";
+@import "./layout/blog_gallery.css";
+@import "./layout/footer.css";
+@import "./layout/header.css";
+@import "./layout/auth_form.css";
 
 @import "./components/logo.css";
 
 
+@import "./pages/login_page.css";
+
+
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
 
 
 

@@ -17,6 +17,12 @@
 
 .btn__push--focus {
   background-color: var(--color-secondary);
+  background-image: linear-gradient(
+        to right bottom,
+        /* var(--color-secondary-dark), */
+        var(--color-secondary),
+        var(--color-secondary-light)
+      );
   border: 2px solid var(--color-secondary);
 }
 .btn__push--focus:hover,
@@ -31,7 +37,8 @@
 
 .btn__push--nofocus {
   background-color: transparent;
-  border: 2px solid var(--color-secondary);
+  border: 2px solid var(--color-secondary-light);
+  color: var(--color-secondary-light);
 }
 .btn__push--nofocus:hover,
 .btn__push--nofocus:focus {

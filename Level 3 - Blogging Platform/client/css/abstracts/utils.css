@@ -1,9 +1,11 @@
-/* .wrapper{
+.wrapper{
     width: 100%;
-    max-width: max(90rem, 75%);
+    max-width: max(90rem, 70%);
     margin: auto;
 
-    // background-color: rgb(105, 105, 105);
+    /* border: 1px solid; */
+
+    /* // background-color: rgb(105, 105, 105);
     padding: 2%;
     
     
@@ -22,23 +24,14 @@
     @include desktop{
         // background-color: rgb(204, 0, 255);
         padding: 2%;
-    }
+    } */
 }
 
 
-.row{
+.flex-center{
     display: flex;
-    flex-direction: row;
-    
-    &--center{
-        justify-content: center;
-        align-items: center;
-    }
+    justify-content: center;
+    align-items: center;
 
-    &--center--x{
-        justify-content: center;
-    }
-    &--center--y{
-        justify-content: center;
-    }
-} */
+    /* background-color: aqua; */
+}

@@ -1,0 +1,102 @@
+.login {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  /* overflow: hidden; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .login__banner {
+  padding: 2rem;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.05)
+    ),
+    radial-gradient(
+      circle at 90% 85%,
+      hsl(215, 100%, 25%) 30%,
+      hsl(215, 100%, 30%) 30% 37%,
+      hsl(215, 100%, 40%) 37% 50%,
+      hsl(215, 100%, 45%) 50% 75%,
+      hsl(215, 100%, 50%) 75%
+    );
+} */
+
+.login__form {
+  padding: 3rem;
+  width: 90%;
+  border-radius: 1rem;
+  max-width: 40rem;
+  background-color: rgb(225, 255, 255);
+  background-color: var(--color-bg);
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.05)
+    ),
+    radial-gradient(
+      circle at 90% 85%,
+      hsl(215, 100%, 25%) 30%,
+      hsl(215, 100%, 30%) 30% 37%,
+      hsl(215, 100%, 40%) 37% 50%,
+      hsl(215, 100%, 45%) 50% 75%,
+      hsl(215, 100%, 50%) 75%
+    );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  min-height: 80%;
+  /* height: fit-content; */
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.login__heading {
+  color: transparent;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  margin-bottom: 2rem;
+  background-image: linear-gradient(
+    to right bottom,
+    var(--color-bg),
+    var(--color-light)
+  );
+  background-clip: text;
+-webkit-background-clip: text;
+}
+.login__heading::before {
+  content: " ";
+  width: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  bottom: -1rem;
+  border-bottom: 2px dotted var(--color-light);
+}
+
+.login__textbox {
+  width: 80%;
+  padding: 1rem 2rem;
+  background-color: var(--color-light);
+  /* background-color: white; */
+  /* margin-bottom: 3rem; */
+  border-radius: 0.5rem;
+}
+
+.login__text{
+    font-size: 1.4rem;
+    width: 80%;
+    color: white;
+}
+.login__text >a{
+    color: var(--color-secondary);
+}
+
+.login__btn{
+    width: 50%;
+}

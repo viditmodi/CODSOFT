@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+
+    <script src="../../templates/header.js"></script>
+    <title>Register page</title>
+  </head>
+  <body onload="onLoadHandler()">
+    <header class="header" id="Header"></header>
+
+    <main class="auth-form__container">
+      <!-- <div class="register__banner">banner</div> -->
+      <form class="form auth-form" id="registerForm">
+        <h1 class="auth-form__heading form__heading heading heading--4">
+          Create the Portal to Your Creativity
+        </h1>
+
+        <input
+          type="text"
+          name="registerFirstName"
+          id="registerFirstName"
+          class="textbox textbox--auth auth-form__textbox"
+          placeholder="first name"
+        />
+        <input
+          type="text"
+          name="registerLastName"
+          id="registerLastName"
+          class="textbox textbox--auth auth-form__textbox"
+          placeholder="Last name"
+        />
+        <input
+          type="text"
+          name="registerUsername"
+          id="registerUsername"
+          class="textbox textbox--auth auth-form__textbox"
+          placeholder="username"
+        />
+        <input
+          type="email"
+          name="registerEmail"
+          id="registerEmail"
+          class="textbox textbox--auth auth-form__textbox"
+          placeholder="email"
+          required
+        />
+        <input
+          type="number"
+          name="registerPhone"
+          id="registerPhone"
+          class="textbox textbox--auth auth-form__textbox"
+          placeholder="Phone"
+        />
+
+        <input
+          type="password"
+          name="registerPassword"
+          id="registerPassword"
+          class="textbox textbox--auth auth-form__textbox"
+          placeholder="Password"
+        />
+        <input
+          type="password"
+          name="registerConfirmPassword"
+          id="registerConfirmPassword"
+          class="textbox textbox--auth auth-form__textbox"
+          placeholder="Confirm Password"
+        />
+
+        <button
+          type="submit"
+          class="btn btn__push btn__push--focus auth-form__btn"
+        >
+          register
+        </button>
+
+        <p class="auth-form__text">
+          New to QuillCraft Community? <br /><a
+            href="/pages/auth/login.html"
+            >Login Here</a
+          >
+        </p>
+      </form>
+    </main>
+
+    <footer class="footer">This is Footer</footer>
+
+    <!-- red-f// OnLoadHandler -->
+    <script>
+      const loadData = {
+        logoURL: "../../assets/images/logo.png",
+        navBarData: [
+          {
+            link: "/",
+            text: "home",
+          },
+          {
+            link: "/pages/auth/login.html",
+            text: "login",
+          },
+          {
+            link: "/pages/auth/register.html",
+            text: "register",
+            active: true,
+          },
+        ],
+      };
+      const header = document.getElementById("Header");
+      const onLoadHandler = () => {
+        console.log("register Page");
+        createHeader(header, loadData);
+      };
+    </script>
+
+    <!-- red-f// register Form Submit -->
+    <script>
+      const registerForm = document.getElementById("registerForm");
+
+      const firstName = document.getElementById("registerFirstName");
+      const lastName = document.getElementById("registerLastName");
+      const username = document.getElementById("registerUsername");
+      const email = document.getElementById("registerEmail");
+      const phone = document.getElementById("registerPhone");
+      const password = document.getElementById("registerPassword");
+      const confirmPassword = document.getElementById(
+        "registerConfirmPassword"
+      );
+      registerForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const data = {
+          first_name: firstName.value,
+          last_name: lastName.value,
+          username: username.value,
+          email: email.value,
+          phone: phone.value,
+          password: password.value,
+          confirm_password: confirmPassword.value,
+        };
+
+        console.log(data);
+      });
+    </script>
+  </body>
+</html>

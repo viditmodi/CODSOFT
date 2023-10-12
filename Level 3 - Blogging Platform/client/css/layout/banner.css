@@ -4,9 +4,9 @@
 .banner {
   width: 100%;
   aspect-ratio: 2.25;
-  /* height: 50cqh; */
+  /* height: 60cqh; */
   /* border-radius: 1rem 1rem 5rem 5rem; */
-  border-radius: 0rem 0rem 10% 10%;
+  border-radius: 0rem 0rem 20% 20%;
   min-height: fit-content;
   /* height: 100cqh; */
   /* -webkit-clip-path: polygon(100% 0, 100% %, 0 100%, 0 0); */
@@ -80,20 +80,31 @@
   bottom: 0;
   transform: translateY(50%);
   width: 80%;
+  padding: 0.5rem;
+  background-image: linear-gradient(
+    to right,
+    hsla(219, 100%, 30%, 0.75),
+    hsla(219, 100%, 50%, 0.75),
+    hsla(219, 100%, 70%, 0.75)
+  );
+  border-radius: 50rem;
   /* padding: 1rem 1.5rem 1rem ; */
 }
 
 .banner__form__textbox {
   padding: 1.5rem 1.5rem;
   width: 100%;
-  border: 2px solid var(--color-primary);
-  border-top: 0px;
-  background-color: rgb(167, 212, 255);
-  border-image: linear-gradient(
+  border-radius: 50rem;
+  /* border: 3px solid var(--color-primary);
+  border-top: 5px solid;
+  border-bottom: 5px solid; */
+  /* background-color: rgb(167, 212, 255); */
+  /* border-radius: 50rem; */
+  /* border-image: linear-gradient(
       to right,
       hsla(219, 100%, 30%, 0.75),
       hsla(219, 100%, 50%, 0.75),
       hsla(219, 100%, 70%, 0.75)
     )
-    1;
+    1; */
 }
