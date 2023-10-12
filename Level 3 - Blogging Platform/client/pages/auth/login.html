@@ -10,6 +10,10 @@
     />
 
     <script src="../../templates/header.js"></script>
+    <script src="../../js/api_requests/account.requests.js"></script>
+    <script src="../../js/auth.js"></script>
+
+
     <title>Document</title>
   </head>
   <body onload="onLoadHandler()">
@@ -28,6 +32,7 @@
           id="loginUsername"
           class="textbox textbox--auth auth-form__textbox"
           placeholder="username or email"
+          value="test1"
         />
 
         <input
@@ -36,6 +41,7 @@
           id="loginPassword"
           class="textbox textbox--auth auth-form__textbox"
           placeholder="Password"
+          value="Test@1234"
         />
 
         <button
@@ -79,23 +85,39 @@
       const header = document.getElementById("Header");
       const onLoadHandler = () => {
         console.log("Login Page");
+        if (checkLoginStatus()) {
+          window.location.href = "/pages/user/dashboard.html";
+        }
         createHeader(header, loadData);
       };
     </script>
 
     <!-- red-f// LoginForm Submit -->
+
     <script>
       const username = document.getElementById("loginUsername");
       const password = document.getElementById("loginPassword");
 
       const loginForm = document.getElementById("loginForm");
-      loginForm.addEventListener("submit", (e) => {
+      loginForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         const data = {
           username: username.value,
           password: password.value,
         };
-        console.log(data);
+        // console.log(data);
+
+        const res = await loginUser(data)
+        console.log(res)
+
+        alert(res.message)
+        if(!res.status){
+            return
+        }
+
+        localStorage.setItem("quillcraft_authtoken", res.authToken)
+        localStorage.setItem("quillcraft_userdata", JSON.stringify(res.data))
+        window.location.href = "/pages/user/dashboard.html"
         // alert("submit")
       });
     </script>

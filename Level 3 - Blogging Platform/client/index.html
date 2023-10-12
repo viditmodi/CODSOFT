@@ -10,6 +10,7 @@
     />
 
     <script src="./templates/blogCard.js"></script>
+    <script src="./js/auth.js"></script>
     <title>QuillCraft Website</title>
   </head>
   <body class="landing-bod" onload="onLoadHandler()">
@@ -24,10 +25,14 @@
       </div>
       <nav class="banner__nav">
         <ul class="banner__nav-list">
-          <a href="/pages/auth/login.html" class="banner__nav-link btn btn__push btn__push--focus"
+          <a
+            href="/pages/auth/login.html"
+            class="banner__nav-link btn btn__push btn__push--focus"
             ><li class="banner__nav-item">Login</li></a
           >
-          <a href="/pages/auth/register.html" class="banner__nav-link btn btn__push btn__push--nofocus"
+          <a
+            href="/pages/auth/register.html"
+            class="banner__nav-link btn btn__push btn__push--nofocus"
             ><li class="banner__nav-item">Register</li></a
           >
         </ul>
@@ -53,8 +58,6 @@
       </div>
 
       <div class="blog-gallery__grid" id="blogGallery">
-
-
         <div class="blog-gallery__grid__card">
           <div class="blog-gallery__grid__card--front">
             <div class="blog-gallery__grid__card__image-container">
@@ -263,12 +266,8 @@
             <button class="btn">read</button>
           </div>
         </div>
-
-       
       </div>
     </section>
-
-
 
     <!--red-f// Blogger Gallery Section -->
     <section class="blogger-gallery wrapper">Bloggers Gallery</section>
@@ -336,8 +335,11 @@
           },
         },
       ];
-     
+
       const onLoadHandler = () => {
+        if (checkLoginStatus()) {
+          window.location.href = "/pages/user/dashboard.html";
+        }
         blogsDataArray.forEach((blogData) => {
           createBlogCard(blogGallery, blogData);
         });

@@ -17,6 +17,7 @@
 @import "./layout/auth_form.css";
 
 @import "./components/logo.css";
+@import "./components/side_navbar.css";
 
 
 @import "./pages/login_page.css";

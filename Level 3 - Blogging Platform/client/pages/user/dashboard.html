@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+
+    <script src="../../templates/header.js"></script>
+    <script src="../../templates/sideNavBar.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <title>Document</title>
+  </head>
+  <body onload="onLoadHandler()">
+    <header class="header" id="Header"></header>
+    dashboard
+
+    <script>
+      // SideNav Bar Data
+      const data = {
+        navBar: [
+          {
+            link: "/pages/user/dashboard.html",
+            text: "dashboard",
+            active: true
+          },
+          {
+            link: "/pages/user/blogs.html",
+            text: "blogs",
+          },
+          {
+            link: "/pages/user/posts.html",
+            text: "posts",
+          },
+        ],
+      };
+
+      // Header Data
+      const loadData = {
+        logoURL: "../../assets/images/logo.png",
+        navBarData: data.navBar,
+      };
+      const header = document.getElementById("Header");
+      const body = document.getElementsByTagName("body")[0];
+      const onLoadHandler = () => {
+        if (!checkLoginStatus()) {
+          window.location.href = "/pages/user/login.html";
+        }
+        // protectedPage()
+        createHeader(header, loadData)
+        createSideNavBar(body, data);
+      };
+    </script>
+  </body>
+</html>

@@ -10,6 +10,8 @@
     />
 
     <script src="../../templates/header.js"></script>
+    <script src="../../js/auth.js"></script>
+    
     <title>Register page</title>
   </head>
   <body onload="onLoadHandler()">
@@ -49,8 +51,8 @@
           id="registerEmail"
           class="textbox textbox--auth auth-form__textbox"
           placeholder="email"
-          required
-        />
+          />
+          <!-- required -->
         <input
           type="number"
           name="registerPhone"
@@ -82,8 +84,7 @@
         </button>
 
         <p class="auth-form__text">
-          New to QuillCraft Community? <br /><a
-            href="/pages/auth/login.html"
+          New to QuillCraft Community? <br /><a href="/pages/auth/login.html"
             >Login Here</a
           >
         </p>
@@ -115,12 +116,20 @@
       const header = document.getElementById("Header");
       const onLoadHandler = () => {
         console.log("register Page");
+        if (checkLoginStatus()) {
+          window.location.href = "/pages/user/dashboard.html";
+        }
         createHeader(header, loadData);
       };
     </script>
 
     <!-- red-f// register Form Submit -->
     <script>
+      //remove
+      let userNumber = 3;
+
+
+
       const registerForm = document.getElementById("registerForm");
 
       const firstName = document.getElementById("registerFirstName");
@@ -132,19 +141,44 @@
       const confirmPassword = document.getElementById(
         "registerConfirmPassword"
       );
-      registerForm.addEventListener("submit", (e) => {
+      registerForm.addEventListener("submit", async (e) => {
         e.preventDefault();
+        // const data = {
+        //   first_name: firstName.value,
+        //   last_name: lastName.value,
+        //   username: username.value,
+        //   email: email.value,
+        //   phone: phone.value,
+        //   password: password.value,
+        //   confirm_password: confirmPassword.value,
+        // };
         const data = {
-          first_name: firstName.value,
-          last_name: lastName.value,
-          username: username.value,
-          email: email.value,
-          phone: phone.value,
-          password: password.value,
-          confirm_password: confirmPassword.value,
+          first_name: "test"+userNumber,
+          last_name: "test"+userNumber,
+          username: "test"+userNumber,
+          email: "test"+userNumber+"@mail.com",
+          phone: "9876543215",
+          password: "Test@1234",
+          confirm_password: "Test@1234",
         };
 
-        console.log(data);
+        // console.log(data);
+
+        try {
+          const response = await fetch("http://localhost:3100/account/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+
+          const res = await response.json();
+          userNumber++;
+          console.log(res);
+        } catch (error) {
+          console.log(error);
+        }
+
+        // if()
       });
     </script>
   </body>
