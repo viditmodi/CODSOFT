@@ -10,8 +10,11 @@
     />
 
     <script src="../../templates/header.js"></script>
+    <script src="../../templates/loader.js"></script>
+    <script src="../../templates/sideNavBar.js"></script>
+
     <script src="../../js/auth.js"></script>
-    
+
     <title>Register page</title>
   </head>
   <body onload="onLoadHandler()">
@@ -51,8 +54,8 @@
           id="registerEmail"
           class="textbox textbox--auth auth-form__textbox"
           placeholder="email"
-          />
-          <!-- required -->
+        />
+        <!-- required -->
         <input
           type="number"
           name="registerPhone"
@@ -114,21 +117,25 @@
         ],
       };
       const header = document.getElementById("Header");
+      // const body = document.getElementById("Header");
+
+      createLoader();
       const onLoadHandler = () => {
         console.log("register Page");
         if (checkLoginStatus()) {
           window.location.href = "/pages/user/dashboard.html";
         }
         createHeader(header, loadData);
+        createSideNavBar(loadData.navBarData);
+
+        removeLoader();
       };
     </script>
 
     <!-- red-f// register Form Submit -->
     <script>
       //remove
-      let userNumber = 3;
-
-
+      let userNumber = 10;
 
       const registerForm = document.getElementById("registerForm");
 
@@ -142,6 +149,7 @@
         "registerConfirmPassword"
       );
       registerForm.addEventListener("submit", async (e) => {
+        createLoader("Creating New Account");
         e.preventDefault();
         // const data = {
         //   first_name: firstName.value,
@@ -153,10 +161,10 @@
         //   confirm_password: confirmPassword.value,
         // };
         const data = {
-          first_name: "test"+userNumber,
-          last_name: "test"+userNumber,
-          username: "test"+userNumber,
-          email: "test"+userNumber+"@mail.com",
+          first_name: "test" + userNumber,
+          last_name: "test" + userNumber,
+          username: "test" + userNumber,
+          email: "test" + userNumber + "@mail.com",
           phone: "9876543215",
           password: "Test@1234",
           confirm_password: "Test@1234",
@@ -174,6 +182,17 @@
           const res = await response.json();
           userNumber++;
           console.log(res);
+
+          if (!res.status) {
+            alert(res.message);
+            removeLoader();
+            return;
+          }
+
+          localStorage.setItem("quillcraft_authtoken", res.authToken);
+          localStorage.setItem("quillcraft_userdata", JSON.stringify(res.data));
+          window.location.href = "/pages/user/dashboard.html";
+          // removeLoader()
         } catch (error) {
           console.log(error);
         }

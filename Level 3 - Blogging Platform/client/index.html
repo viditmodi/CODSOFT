@@ -11,6 +11,7 @@
 
     <script src="./templates/blogCard.js"></script>
     <script src="./js/auth.js"></script>
+    <script src="./templates/loader.js"></script>
     <title>QuillCraft Website</title>
   </head>
   <body class="landing-bod" onload="onLoadHandler()">
@@ -23,6 +24,9 @@
           class="banner__logo-image logo__image"
         />
       </div>
+      
+      <h1 class="banner__title">QuillCraft</h1>
+      <h3 class="banner__tagline">Unleash Your Inner Wordsmith</h3>
       <nav class="banner__nav">
         <ul class="banner__nav-list">
           <a
@@ -37,8 +41,6 @@
           >
         </ul>
       </nav>
-      <h1 class="banner__title">QuillCraft</h1>
-      <h3 class="banner__tagline">Unleash Your Inner Wordsmith</h3>
       <form action="" class="banner__form">
         <input
           type="text"
@@ -336,6 +338,7 @@
         },
       ];
 
+      createLoader()
       const onLoadHandler = () => {
         if (checkLoginStatus()) {
           window.location.href = "/pages/user/dashboard.html";
@@ -343,6 +346,8 @@
         blogsDataArray.forEach((blogData) => {
           createBlogCard(blogGallery, blogData);
         });
+
+        removeLoader()
       };
     </script>
   </body>

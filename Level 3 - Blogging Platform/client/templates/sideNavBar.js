@@ -12,10 +12,11 @@ const toggleSideNavBar = ()=>{
 }
 
 
-const createSideNavBar = (parent, data)=>{
+const createSideNavBar = (data)=>{
+    const body = document.getElementsByTagName("body")[0];
     const toggleBtn = document.createElement("button")
-    toggleBtn.classList.add("btn","btn__push","btn__push--focus","side-nav-bar__btn--toggle")
-    toggleBtn.textContent = "open"
+    toggleBtn.classList.add("btn","btn__push","btn__push--focus","side-nav-bar__btn","side-nav-bar__btn--toggle")
+    toggleBtn.innerHTML = '<span class="material-symbols-outlined">menu_open</span>'
     toggleBtn.onclick = toggleSideNavBar
 
     const navBarContainer = document.createElement("div")
@@ -35,8 +36,8 @@ const createSideNavBar = (parent, data)=>{
     webname.innerText = "QuillCraft"
 
     const closeBtn = document.createElement("button")
-    closeBtn.classList.add("btn","btn__push","btn__push--focus","side-nav-bar__btn--close")
-    closeBtn.textContent = "close"
+    closeBtn.classList.add("btn","btn__push","btn__push--focus", "side-nav-bar__btn","side-nav-bar__btn--close")
+    closeBtn.innerHTML = '<span class="material-symbols-outlined">close</span>'
     closeBtn.onclick = toggleSideNavBar
 
     navBarTop.appendChild(webname)
@@ -49,7 +50,7 @@ const createSideNavBar = (parent, data)=>{
     navBarList.classList.add("side-nav-bar__list")
 
 
-    data.navBar.forEach(item => {
+    data.forEach(item => {
         const navBarItem = document.createElement("li")
         navBarItem.classList.add("side-nav-bar__list-item")
 
@@ -73,8 +74,8 @@ const createSideNavBar = (parent, data)=>{
     navBarContainer.appendChild(navBar)
 
 
-    parent.appendChild(toggleBtn)
-    parent.appendChild(navBarContainer)
+    body.appendChild(toggleBtn)
+    body.appendChild(navBarContainer)
 
 
 

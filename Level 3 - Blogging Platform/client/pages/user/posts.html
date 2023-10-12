@@ -11,6 +11,7 @@
     />
 
     <script src="../../templates/header.js"></script>
+    <script src="../../templates/loader.js"></script>
     <script src="../../templates/sideNavBar.js"></script>
     <script src="../../js/auth.js"></script>
 
@@ -21,38 +22,36 @@
     posts
 
     <script>
-      // SideNav Bar Data
-      const data = {
-        navBar: [
+      const loadData = {
+        logoURL: "../../assets/images/logo.png",
+        navBarData: [
           {
             link: "/pages/user/dashboard.html",
             text: "dashboard",
-        },
-        {
+          },
+          {
             link: "/pages/user/blogs.html",
             text: "blogs",
-        },
-        {
+            active: true,
+          },
+          {
             link: "/pages/user/posts.html",
             text: "posts",
-            active: true
           },
         ],
       };
-
-      // Header Data
-      const loadData = {
-        logoURL: "../../assets/images/logo.png",
-        navBarData: data.navBar,
-      };
       const header = document.getElementById("Header");
       const body = document.getElementsByTagName("body")[0];
+      createLoader()
       const onLoadHandler = () => {
         if (!checkLoginStatus()) {
-          window.location.href = "/pages/user/login.html";
+          window.location.href = "/pages/auth/login.html";
         }
         createHeader(header, loadData)
-        createSideNavBar(body, data);
+        createSideNavBar(loadData.navBarData);
+
+
+        removeLoader()
       };
     </script>
   </body>

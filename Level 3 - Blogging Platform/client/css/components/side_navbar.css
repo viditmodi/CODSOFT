@@ -1,3 +1,12 @@
+.side-nav-bar__btn{
+    padding: 1rem;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.6rem;
+    font-size: 1.6rem;
+}
 .side-nav-bar__btn--toggle{
     position: fixed;
     top: 0%;
@@ -12,8 +21,9 @@
     bottom: 0;
     width: 0%;
     background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(15px);
     transition: 0.2s ease-in-out;
+    overflow: hidden;
 }
 
 .side-nav-bar{

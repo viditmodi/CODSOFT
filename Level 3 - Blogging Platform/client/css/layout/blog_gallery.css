@@ -222,3 +222,17 @@
   text-align: right;
   direction: rtl;
 }
+
+
+
+
+
+
+
+@media screen and (max-width: 450px){
+  .blog-gallery__grid {
+    padding: 1rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

@@ -21,6 +21,7 @@ const createHeader = (parentElement, data)=>{
 
 
     const nav = document.createElement('nav')
+    nav.classList.add("header__nav")
     const navList = document.createElement('ul')
     navList.classList.add("header__nav-list")
 

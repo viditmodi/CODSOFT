@@ -3,8 +3,8 @@
 }
 .banner {
   width: 100%;
-  aspect-ratio: 2.25;
-  /* height: 60cqh; */
+  /* aspect-ratio: 2.25; */
+  height: 90cqh;
   /* border-radius: 1rem 1rem 5rem 5rem; */
   border-radius: 0rem 0rem 20% 20%;
   min-height: fit-content;
@@ -107,4 +107,20 @@
       hsla(219, 100%, 70%, 0.75)
     )
     1; */
+}
+
+
+
+
+
+@media screen and (max-width: 450px){
+  .banner__nav{
+    position: unset;
+    /* width: 100%; */
+    /* background-color: aqua; */
+    margin-top: 4rem;
+}
+.banner__title{
+  font-size: 6.5rem;
+}
 }

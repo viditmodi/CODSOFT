@@ -18,6 +18,7 @@
 
 @import "./components/logo.css";
 @import "./components/side_navbar.css";
+@import "./components/loader.css";
 
 
 @import "./pages/login_page.css";
