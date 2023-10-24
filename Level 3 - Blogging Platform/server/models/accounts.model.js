@@ -2,6 +2,15 @@ const mongoose = require("mongoose");
 
 const accountSchema = mongoose.Schema(
   {
+    image_url: {
+      type: String,
+      trim: true,
+    },
+    user_tier: {
+      type: String,
+      trim: true,
+      default: "newbie"
+    },
     first_name: {
       type: String,
       trim: true,
@@ -25,6 +34,26 @@ const accountSchema = mongoose.Schema(
     },
     password: {
       type: String,
+    },
+    total_blogs: {
+        type: Number,
+        default: 0
+    },
+    total_posts: {
+        type: Number,
+        default: 0
+    },
+    total_views: {
+        type: Number,
+        default: 0
+    },
+    total_likes: {
+        type: Number,
+        default: 0
+    },
+    total_comments: {
+        type: Number,
+        default: 0
     },
     tokens: [
       {

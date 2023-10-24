@@ -14,14 +14,18 @@
 @import "./layout/blog_gallery.css";
 @import "./layout/footer.css";
 @import "./layout/header.css";
+@import "./layout/grid_container.css";
 @import "./layout/auth_form.css";
 
 @import "./components/logo.css";
 @import "./components/side_navbar.css";
 @import "./components/loader.css";
+@import "./components/id_card.css";
 
 
 @import "./pages/login_page.css";
+@import "./pages/dashboard.css";
+@import "./pages/blogs.css";
 
 
 

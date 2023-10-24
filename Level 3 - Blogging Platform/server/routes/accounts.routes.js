@@ -1,6 +1,13 @@
 const express = require("express");
 const { body } = require("express-validator");
-const { createNewAccount, logInToAccount } = require("../controllers/accounts.controllers");
+const {
+  createNewAccount,
+  logInToAccount,
+  logOutOfAccount,
+  authorizeAccount,
+  updateAccountData,
+} = require("../controllers/accounts.controllers");
+const { isValidUser } = require("../middlewares/auth.middleware");
 
 const accountRouter = express.Router();
 
@@ -43,6 +50,16 @@ accountRouter.post(
   body("username").trim().notEmpty().withMessage("username cannot be empty"),
   body("password").trim().notEmpty().withMessage("password cannot be empty"),
   logInToAccount
+);
+
+accountRouter.put("/logout", isValidUser, logOutOfAccount);
+
+accountRouter.get("/auth", isValidUser, authorizeAccount);
+
+accountRouter.put(
+  "/",
+  // isValidUser,
+  updateAccountData
 );
 
 module.exports = accountRouter;

@@ -11,16 +11,134 @@
     />
 
     <script src="../../templates/header.js"></script>
+    <script src="../../templates/blogCard.js"></script>
+    <script src="../../templates/footer.template.js"></script>
     <script src="../../templates/loader.js"></script>
     <script src="../../templates/sideNavBar.js"></script>
+
     <script src="../../js/auth.js"></script>
+    <script src="../../js/generators.js"></script>
+    <script src="../../js/data/apiURLs.js"></script>
 
     <title>Document</title>
   </head>
   <body onload="onLoadHandler()">
     <header class="header" id="Header"></header>
-    blogs
 
+    <section class="blog grid-container">
+      <section class="new-blog grid-container__left" id="newBlog">
+        <form action="" class="new-blog__form" id="blogForm" enctype="multipart/form-data">
+          <div class="new-blog__thumbnail-container">
+            <img
+              src="/assets/images/default_blog.png"
+              alt="thumbnail"
+              id="blogThumbnailImage"
+              class="new-blog__thumbnail__image"
+            />
+            <input
+              type="file"
+              name="blogThumbnail"
+              id="blogThumbnail"
+              onchange="previewImage(event)"
+              class="new-blog__thumbnail__input"
+            />
+            <div class="btn new-blog__thumbnail__btn" onclick="uploadImage()">U</div>
+          </div>
+
+          <input type="text" name="blogTitle" id="blogTitle" placeholder="blog title">
+          <!-- <input type="text" name="blogDesc" id="blogDesc" > -->
+
+          <textarea name="blogDesc" id="blogDesc" cols="30" rows="10" placeholder="blog description"></textarea>
+
+          <select name="blogCategory" id="blogCategory">
+            <option value="food" >food</option>
+          </select>
+
+          <button type="submit" >create</button>
+        </form>
+      </section>
+
+      <section class="blog-gallery wrapper">
+        <div class="blog-gallery__heading">
+          <h2 class="blog-gallery__title heading heading--3">Your Blogs</h2>
+          <p>toggle btn</p>
+        </div>
+
+        <div class="blog-gallery__grid" id="blogGallery"></div>
+
+        
+      </section>
+
+      <!-- <button class="btn btn__push btn__push--focus blogs__btn" onclick="showNewBlog()">New</button> -->
+    </section>
+
+    <footer id="Footer"></footer>
+
+
+    <!-- red-f// DATA -->
+    <!-- <script>
+      const blogsDataArray = [
+        {
+          blogID: "qwertyuiop",
+          thumbnail:
+            "https://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg",
+          title: "meet my orangutan",
+          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum at error sunt porro quaerat officia, vel, iusto nam in nulla dolorem quos, exercitationem saepe! Rem laboriosam voluptatem qui adipisci libero, molestiae sit praesentium corrupti earum officiis cumque natus asperiores? Non delectus possimus voluptatibus in numquam sequi earum tenetur odio repellendus?",
+          author: {
+            image:
+              "https://i.pinimg.com/236x/dd/97/3a/dd973ac116a977c8dd5296b0da504b8c.jpg",
+            name: "Krishna",
+          },
+          category: "Health",
+          metadata: {
+            publishedDate: new Date(),
+            likes: "785",
+            views: "74125",
+            comments: "56",
+          },
+        },
+        {
+          blogID: "asdfghjkl",
+          thumbnail:
+            "https://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg",
+          title: "meet my orangutan",
+          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum at error sunt porro quaerat officia, vel, iusto nam in nulla dolorem quos, exercitationem saepe! Rem laboriosam voluptatem qui adipisci libero, molestiae sit praesentium corrupti earum officiis cumque natus asperiores? Non delectus possimus voluptatibus in numquam sequi earum tenetur odio repellendus?",
+          author: {
+            image:
+              "https://i.pinimg.com/236x/dd/97/3a/dd973ac116a977c8dd5296b0da504b8c.jpg",
+            name: "Krishna",
+          },
+          category: "Fashion",
+          metadata: {
+            publishedDate: new Date(),
+            likes: "785",
+            views: "74125",
+            comments: "56",
+          },
+        },
+        {
+          blogID: "zxcvbnmasdf",
+          thumbnail:
+            "https://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg",
+          title: "meet my orangutan",
+          desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum at error sunt porro quaerat officia, vel, iusto nam in nulla dolorem quos, exercitationem saepe! Rem laboriosam voluptatem qui adipisci libero, molestiae sit praesentium corrupti earum officiis cumque natus asperiores? Non delectus possimus voluptatibus in numquam sequi earum tenetur odio repellendus?",
+          author: {
+            image:
+              "https://i.pinimg.com/236x/dd/97/3a/dd973ac116a977c8dd5296b0da504b8c.jpg",
+            name: "Krishna",
+          },
+          category: "Animals",
+          metadata: {
+            publishedDate: new Date(),
+            likes: "785",
+            views: "74125",
+            comments: "56",
+          },
+        },
+      ];
+    </script> -->
+
+    <!-- red-f// On Load Handler -->
     <script>
       // Header Data
       const loadData = {
@@ -39,20 +157,123 @@
             link: "/pages/user/posts.html",
             text: "posts",
           },
+          {
+            link: "/pages/auth/logout.html",
+            text: "logout",
+          },
         ],
       };
       const header = document.getElementById("Header");
       const body = document.getElementsByTagName("body")[0];
       createLoader();
-      const onLoadHandler = () => {
+      const onLoadHandler = async () => {
+        const userdata = JSON.parse(localStorage.getItem("quillcraft_userdata"))
         if (!checkLoginStatus()) {
           window.location.href = "/pages/auth/login.html";
         }
-        createHeader(header, loadData);
-        createSideNavBar(loadData.navBarData);
+        await createHeader(header, loadData);
+        await createSideNavBar(loadData.navBarData);
+
+        try {
+          const response = await fetch(allBlogURL + userdata.username)
+          const res = await response.json()
+          
+          res.data.forEach((blogData) => {
+            createBlogCard(blogGallery, blogData);
+          });
+          console.log(res)
+        } catch (error) {
+          console.log(error)
+        }
+
+
+        await createFooter();
 
         removeLoader();
       };
+    </script>
+
+
+    <!-- red-f// Blog Form Submit -->
+    <script>
+      // const showNewBlog = ()=>{
+      //   const body = document.getElementsByTagName('body')[0]
+      //   body.style.paddingBottom = "0rem"
+      //   const footer = document.getElementById('Footer')
+      //   footer.style.display = "none"
+      //   const newBlog = document.getElementById('newBlog')
+      //   newBlog.style.display = "flex"
+      // }
+
+      const previewImage = (event) => {
+        const blogThumbnail = document.getElementById("blogThumbnailImage");
+        let input = event.target;
+        //  var image = document.getElementById('preview');
+        if (input.files && input.files[0]) {
+          let reader = new FileReader();
+          reader.onload = function (e) {
+            blogThumbnail.src = e.target.result;
+          };
+          reader.readAsDataURL(input.files[0]);
+        }
+      };
+
+      const uploadImage = ()=>{
+        // e.preventDefault()
+        const blogThumbnail = document.getElementById("blogThumbnail")
+        blogThumbnail.click()
+      }
+    
+
+      const blogForm = document.getElementById("blogForm")
+      blogForm.addEventListener("submit", async (e)=>{
+        e.preventDefault()
+
+        const blogThumbnail = document.getElementById("blogThumbnail")
+        const blogTitle = document.getElementById("blogTitle")
+        const blogDesc = document.getElementById("blogDesc")
+        const blogCategory = document.getElementById("blogCategory")
+
+        const blogID = blogIDGenerator()
+        const blogData = new FormData()
+        blogData.append("thumbnail", blogThumbnail.files[0])
+        blogData.append("title", blogTitle.value)
+        blogData.append("desc", blogDesc.value)
+        blogData.append("category", blogCategory.value)
+        blogData.append("blogID", blogID)
+        blogData.append("author", JSON.parse(localStorage.getItem("quillcraft_userdata")).username)
+
+        // const blogData = {
+        //   thumbnail: blogThumbnail.files[0],
+        //   title: blogTitle.value,
+        //   desc: blogDesc.value,
+        //   category: blogCategory.value,
+        //   blogID: blogIDGenerator()
+        // }
+
+        console.log(JSON.stringify(blogData))
+        // console.log(blogBaseURL)
+
+        try {
+          const response = await fetch(blogBaseURL + `?blogID=${blogID}`, {
+            method: "POST",
+            // headers: {"Content-Type": "application/json"},
+            body: blogData
+          })
+          const res = await response.json()
+
+          createBlogCard(blogGallery, res.data);
+          blogForm.reset()
+          const blogThumbnailImage = document.getElementById("blogThumbnailImage");
+          blogThumbnailImage.src = "/assets/images/default_blog.png"
+          localStorage.setItem("quillcraft_userdata", JSON.stringify(res.userdata))
+
+          console.log(res)
+        } catch (error) {
+          console.log(error)
+        }
+      })
+      
     </script>
   </body>
 </html>

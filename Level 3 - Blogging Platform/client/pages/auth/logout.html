@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+
+    <!-- <script src="../../templates/header.js"></script> -->
+    <script src="../../templates/loader.js"></script>
+    <!-- <script src="../../templates/sideNavBar.js"></script> -->
+
+    <script src="../../js/api_requests/account.requests.js"></script>
+    <script src="../../js/auth.js"></script>
+
+
+    <title>Document</title>
+  </head>
+  <body onload="onLoadHandler()">
+
+    <main class="">
+      
+    </main>
+
+
+    <!-- red-f// OnLoadHandler -->
+    <script>
+      createLoader("Logging Out")
+      const onLoadHandler = async () => {
+        const res = await logoutUser()
+        console.log(res)
+
+        if(!res.status){
+          alert(res.message)
+          removeLoader()
+          return
+        }
+
+        localStorage.removeItem("quillcraft_authtoken")
+        localStorage.removeItem("quillcraft_userdata")
+        window.location.href = "/pages/auth/login.html"
+
+
+        removeLoader()
+      };
+    </script>
+
+  </body>
+</html>

@@ -11,6 +11,7 @@
     />
 
     <script src="../../templates/header.js"></script>
+    <script src="../../templates/footer.template.js"></script>
     <script src="../../templates/sideNavBar.js"></script>
     <script src="../../js/auth.js"></script>
     <script src="../../templates/loader.js"></script>
@@ -19,12 +20,238 @@
   </head>
   <body onload="onLoadHandler()">
     <header class="header" id="Header"></header>
-    dashboard
 
+    <div class="dashboard grid-container">
+      <!-- red-f// DASHBOARD LEFT  -->
+      <div class="dashboard__left grid-container__left">
+        <div class="idcard__container">
+          <!-- <div class="idcard__hook"></div> -->
+          <div class="idcard idcard--front">
+            <div class="idcard__design idcard__design--tl"></div>
+            <div class="idcard__design idcard__design--br"></div>
+            <div class="idcard__content idcard__content--front">
+              <!-- logo (with name?) -->
+              <div class="idcard__logo idcard__logo--front">
+                <img src="../../assets/images/logo.png" alt="logo" />
+              </div>
+              <!-- profile image -->
+              <div class="idcard__image-container">
+                <div>
+                  <img
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example"
+                    alt="profile"
+                  />
+                </div>
+              </div>
+              <!-- username -->
+              <p class="idcard__name" id="usernameTag">name here</p>
+              <!-- tier -->
+              <p class="idcard__tier" id="tierTag">name here</p>
+              <!-- immutable data -->
+              <div class="idcard__data-container">
+                <div class="idcard__data">
+                  <!-- <span class="idcard__data--icon"></span> -->
+                  <p class="idcard__data--content" id="blogTag">data</p>
+                  <p class="idcard__data--heading">blogs</p>
+                  <!-- <span class="idcard__data--icon"></span> -->
+                </div>
+                <div class="idcard__data">
+                  <!-- <span class="idcard__data--icon"></span> -->
+                  <p class="idcard__data--content" id="postTag">data</p>
+                  <p class="idcard__data--heading">posts</p>
+                </div>
+                <div class="idcard__data">
+                  <!-- <span class="idcard__data--icon"></span> -->
+                  <p class="idcard__data--content" id="viewsTag">data</p>
+                  <p class="idcard__data--heading">views</p>
+                </div>
+                <div class="idcard__data">
+                  <!-- <span class="idcard__data--icon"></span> -->
+                  <p class="idcard__data--content" id="likesTag">data</p>
+                  <p class="idcard__data--heading">likes</p>
+                </div>
+                <div class="idcard__data">
+                  <!-- <span class="idcard__data--icon"></span> -->
+                  <p class="idcard__data--content" id="commentsTag">data</p>
+                  <p class="idcard__data--heading">comments</p>
+                </div>
+                <div class="idcard__data">
+                  <!-- <span class="idcard__data--icon"></span> -->
+                  <p class="idcard__data--content" id="joinedTag">data</p>
+                  <p class="idcard__data--heading">joined</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="idcard idcard--back">
+            <div class="idcard__design idcard__design--tr"></div>
+            <div class="idcard__design idcard__design--bl"></div>
 
-    <!-- <div class="loader" id="loader">
-      Loading...
-    </div> -->
+            <div class="idcard__content idcard__content--back">
+              <!-- logo (with name?) -->
+              <div class="idcard__logo idcard__logo--back">
+                <img src="../../assets/images/logo.png" alt="logo" />
+              </div>
+              <!-- profile image -->
+              <div class="idcard__image-container">
+                <img
+                  src="https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png"
+                  alt="profile"
+                />
+              </div>
+              <!-- name -->
+              <p class="idcard__name">name here</p>
+              <!-- tier -->
+              <p class="idcard__tier">name here</p>
+
+              <!-- mutable data -->
+              <div class="idcard__profile">
+                <div class="idcard__profile__firstname idcard__profile__field">
+                  <!-- <span class="idcard__data--icon"></span> -->
+                  <p class="idcard__data--content" id="nameTag">data data</p>
+                  <p class="idcard__data--heading">name</p>
+                  <!-- <span class="idcard__data--icon"></span> -->
+                </div>
+                <div class="idcard__profile__lastname idcard__profile__field">
+                  <!-- <span class="idcard__data--icon"></span> -->
+                  <p class="idcard__data--content" id="postTag">
+                    data@data.com
+                  </p>
+                  <p class="idcard__data--heading">email</p>
+                </div>
+                <div class="idcard__profile__field">
+                  <!-- <span class="idcard__data--icon"></span> -->
+                  <p class="idcard__data--content" id="viewsTag">9874563215</p>
+                  <p class="idcard__data--heading">phone</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="idcard__form--togglebtn" >
+              <button class="btn" onclick="showProfileForm()">edit</button>
+            </div>
+
+            <div class="idcard__form" id="profileFormContainer"></div>
+          </div>
+        </div>
+      </div>
+      <!-- red-f// DASHBOARD LEFT  -->
+      <div class="dashboard__right">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque ea illum
+        nostrum, reprehenderit voluptatibus sequi, quaerat eveniet commodi earum
+        veniam possimus ducimus similique aliquam, eos ratione enim molestiae
+        iure sed quia. Odio blanditiis quo, at in itaque modi sapiente culpa
+        adipisci non. Soluta minima quas itaque culpa tempore! Voluptas
+        voluptatum assumenda, dolores accusamus nemo aut rem earum architecto.
+        Dolorum, illum quibusdam. Fugit voluptatum quos veritatis ut, explicabo
+        doloremque minus assumenda tempora tempore natus, voluptates aliquam qui
+        debitis odio veniam perspiciatis totam vel est distinctio suscipit
+        voluptatibus quo quasi vero? Veniam, quia. Animi minima quasi accusamus
+        rerum quibusdam distinctio dolor officiis natus enim facilis ipsa
+        voluptates ipsum in impedit ex nam, consequatur ipsam iste tempore
+        dolores. Consequuntur deleniti veritatis error voluptatum. Error autem
+        obcaecati enim minima inventore corporis voluptatem ab commodi placeat
+        optio, exercitationem labore! Quam eius expedita corrupti suscipit
+        dignissimos. Voluptate architecto provident aliquam consectetur error
+        sed harum quam natus facere dicta deserunt blanditiis amet possimus
+        dolore, consequuntur eaque numquam a tempora distinctio excepturi vero
+        illum? Itaque, ut! Nihil vero, ipsam accusamus quod incidunt molestias
+        corrupti, consectetur facilis, impedit alias placeat eum minus ullam
+        voluptatem fuga similique eius delectus officiis possimus aliquid!
+        Adipisci mollitia error amet magnam dolorum, et, excepturi fugiat,
+        dolorem ipsum cupiditate recusandae blanditiis laboriosam quam iste qui
+        vel doloribus quod dolore laborum nisi dolores. Iure maiores fugiat
+        officiis eius dignissimos placeat ullam a? Id ullam dignissimos
+        accusamus non suscipit provident, temporibus ipsa ducimus autem tempora,
+        sequi beatae ex iure qui amet blanditiis voluptates nobis nemo adipisci
+        repudiandae omnis quam. Nobis amet, quos reiciendis officia veritatis
+        voluptatem veniam suscipit! Eligendi modi odit doloremque? Enim debitis
+        in veniam eius ratione possimus unde harum corrupti qui velit optio,
+        officiis quaerat labore consequatur dignissimos? Molestiae, eveniet
+        exercitationem ipsum tempora laudantium quasi sequi quod nam consequatur
+        voluptate amet ducimus labore laboriosam excepturi odit voluptas
+        repellendus deleniti sit quaerat sapiente ullam libero obcaecati
+        repellat? Possimus dolore obcaecati laborum suscipit, voluptas harum
+        repellat quaerat dignissimos ad quod ipsa, magni quis eos illo,
+        voluptate velit maxime quos nam mollitia exercitationem non? Maiores
+        aliquid nesciunt possimus explicabo necessitatibus, nulla placeat
+        delectus, porro ab deleniti error iste repellat et reprehenderit enim
+        totam illum quas inventore! Voluptatibus accusantium, sit corporis
+        itaque porro molestiae sed magni veritatis necessitatibus, repudiandae
+        laborum voluptatum at optio consequuntur illum saepe mollitia dicta
+        molestias aspernatur impedit quasi neque autem. Fuga corrupti illum
+        dolorem amet enim assumenda repudiandae, vel tempore corporis sequi ut
+        ab placeat omnis explicabo quibusdam minima impedit earum laboriosam
+        doloremque excepturi dolores. Provident optio illum cum? Dicta ipsum
+        inventore ab dolore tenetur ratione. Molestiae, in nemo ratione saepe
+        eum provident animi earum voluptates id nostrum sequi fuga ut alias,
+        doloremque fugiat? Pariatur facilis ratione impedit. Temporibus, ipsum
+        sunt eligendi sed deserunt quaerat eos excepturi corrupti cumque magnam
+        debitis aut nostrum tempore recusandae asperiores, voluptas quae unde
+        possimus accusamus. Accusantium, architecto. Recusandae molestias labore
+        mollitia est dolorem. Quae, iusto dignissimos voluptatem ipsam harum
+        facilis tempora debitis aliquam aut, officia cumque! Fugit tenetur,
+        facere nisi, id vel iure ipsam eum culpa sunt ad perspiciatis eaque
+        maiores? Eveniet et est facilis hic quae consequatur dolore. Aperiam
+        inventore eaque ut quod perferendis nostrum! Nostrum incidunt maxime
+        vel, pariatur accusamus dolor sapiente nam odit iure? Ratione esse
+        repudiandae sapiente quia minima illo id molestias sequi aliquid sunt
+        assumenda a expedita eum recusandae ex, mollitia quasi dicta temporibus
+        consequuntur quo neque aliquam, nam reprehenderit. Veniam optio
+        repudiandae quod ex qui aliquam facere aspernatur, placeat tenetur
+        molestias sit fugit exercitationem excepturi sapiente atque deleniti
+        voluptatibus. Magnam porro voluptatem temporibus cum, eum unde maiores
+        illo excepturi quae nesciunt suscipit ab maxime recusandae libero
+        quibusdam! Officiis quia ad necessitatibus quas inventore minima
+        recusandae ipsa harum sapiente repudiandae, quisquam porro, id
+        perspiciatis omnis vero vitae corporis, corrupti optio similique
+        excepturi quam? Consequatur vel exercitationem neque! Est corrupti
+        recusandae assumenda placeat sunt libero eaque facilis sapiente cum amet
+        dignissimos et quia hic omnis, natus asperiores. Asperiores tempora
+        eligendi perferendis deleniti, laboriosam vitae fugit debitis sint
+        soluta? Deleniti hic suscipit pariatur mollitia nihil, sint temporibus
+        maxime placeat, ipsam molestiae ab error vel aliquam fuga quidem
+        architecto! Dolor tempore cum ipsum deserunt aliquam doloremque! Nihil,
+        officia eos sunt odit voluptate reiciendis in porro a facere perferendis
+        iste doloremque debitis eum magnam corrupti quas illo dolorum illum
+        sapiente nisi enim earum voluptatem. Esse, dignissimos aliquam atque
+        sapiente inventore fugiat corporis modi soluta qui labore enim
+        laboriosam voluptatum praesentium fuga et, libero tempore consequatur
+        obcaecati aperiam saepe nulla reprehenderit illo! Saepe, vero
+        perspiciatis a soluta magni est repellat modi aliquid, praesentium
+        voluptates labore magnam tempora perferendis illo amet quaerat inventore
+        quae. Aliquam corporis quae ad ducimus quam? Provident nobis sed
+        repudiandae quaerat? Eaque ut accusamus exercitationem eum minima
+        sapiente velit, earum repudiandae cupiditate dolorem at, doloremque
+        pariatur, error aut ab? Pariatur possimus expedita laborum, sint illum
+        odit. Possimus blanditiis minima ipsum accusamus delectus provident sint
+        laudantium. Veniam, cum blanditiis eos dicta iste consequuntur quo non
+        at consequatur enim veritatis, commodi cumque quia voluptatem quisquam
+        amet. Nisi provident molestias, quis ad ratione officiis obcaecati neque
+        illum doloremque modi vitae ea aliquam qui odio fugiat assumenda
+        nesciunt nam voluptatem repellat! Suscipit magnam consequuntur nihil
+        veniam commodi, necessitatibus totam quam sint maxime adipisci
+        repudiandae officia cumque recusandae fuga error, nam blanditiis
+        mollitia quisquam quia. Debitis, officiis commodi, non laboriosam ea
+        iusto architecto soluta sequi, perspiciatis ad suscipit doloremque vitae
+        accusamus exercitationem rem ipsum quisquam eos! Saepe, explicabo
+        provident. Laudantium ut accusantium reiciendis doloremque at! Rem alias
+        molestiae amet iste animi, corrupti libero quidem quaerat. Magnam
+        debitis pariatur ipsa repellat commodi dolore nobis aspernatur similique
+        minima a libero, rem dolores qui culpa tempore natus deserunt accusamus,
+        autem fuga. Quisquam numquam ducimus quaerat, nostrum fugiat pariatur
+        ipsam quam! Unde blanditiis nobis voluptas obcaecati illo autem delectus
+        ratione, temporibus magnam architecto sint sit, rem, nesciunt quidem
+        maxime! Consectetur repellat est error non natus perferendis,
+        exercitationem neque consequatur voluptate sunt, autem voluptatem
+        excepturi quasi dolorum obcaecati nam? Voluptatibus iusto voluptate esse
+        minima tempore dignissimos quam illo placeat explicabo quae illum,
+        itaque necessitatibus nemo, nostrum molestias, corrupti molestiae nisi
+        minus in. Nostrum ea debitis hic.
+      </div>
+    </div>
+
+    <footer id="Footer"></footer>
 
     <script>
       const loadData = {
@@ -33,29 +260,81 @@
           {
             link: "/pages/user/dashboard.html",
             text: "dashboard",
+            active: true,
           },
           {
             link: "/pages/user/blogs.html",
             text: "blogs",
-            active: true,
           },
           {
             link: "/pages/user/posts.html",
             text: "posts",
           },
+          {
+            link: "/pages/auth/logout.html",
+            text: "logout",
+          },
         ],
       };
       const header = document.getElementById("Header");
       const body = document.getElementsByTagName("body")[0];
-      createLoader()
-      const onLoadHandler = () => {
-        if (!checkLoginStatus()) {
+
+      //<!-- blue-f// On Load Function
+      createLoader();
+      const onLoadHandler = async () => {
+        if (!(await checkLoginStatus())) {
           window.location.href = "/pages/auth/login.html";
         }
-        // protectedPage()
-        createHeader(header, loadData)
-        createSideNavBar(loadData.navBarData);
-        removeLoader()
+        await createHeader(header, loadData);
+        await createSideNavBar(loadData.navBarData);
+        await createFooter();
+
+        const idCardData = JSON.parse(
+          localStorage.getItem("quillcraft_userdata")
+        );
+        await setIDCard(idCardData);
+        removeLoader();
+      };
+    </script>
+
+    <!-- red-f// Set ID Card -->
+    <script>
+      const setIDCard = (data) => {
+        console.log(data);
+        const blogTag = document.getElementById("blogTag");
+        const postTag = document.getElementById("postTag");
+        const viewsTag = document.getElementById("viewsTag");
+        const likesTag = document.getElementById("likesTag");
+        const commentsTag = document.getElementById("commentsTag");
+        const joinedTag = document.getElementById("joinedTag");
+
+        const usernameTag = document.getElementById("usernameTag");
+        const tiertag = document.getElementById("tierTag");
+
+        usernameTag.innerText = data.username;
+        tiertag.innerText = data.user_tier;
+        blogTag.innerText = data.total_blogs;
+        postTag.innerText = data.total_posts;
+        viewsTag.innerText = data.total_views;
+        likesTag.innerText = data.total_likes;
+        commentsTag.innerText = data.total_comments;
+        joinedTag.innerText = new Date(data.joining).toLocaleDateString();
+        // new Date().toLocaleDateString
+        return Promise.resolve();
+      };
+    </script>
+
+    <!-- red-f// Show Profile Edit Form -->
+    <script>
+      const showProfileForm = () => {
+        const profileFormContainer = document.getElementById("profileFormContainer")
+        // profileFormContainer.style.inset = "0 0 0 0"
+        // profileFormContainer.style.bottom = "0"
+        // profileFormContainer.style.left = "0"
+        profileFormContainer.style.width = "100%"
+        // profileFormContainer.style.height = "100%"
+
+        // profileFormContainer.style.right = "0"
       };
     </script>
   </body>

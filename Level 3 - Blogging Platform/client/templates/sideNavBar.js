@@ -78,5 +78,7 @@ const createSideNavBar = (data)=>{
     body.appendChild(navBarContainer)
 
 
-
+    return Promise.resolve()
 }
+
+

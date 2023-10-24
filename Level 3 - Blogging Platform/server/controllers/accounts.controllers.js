@@ -126,6 +126,14 @@ const logInToAccount = async (req, res) => {
         username: isExistingAccount.username,
         email: isExistingAccount.email,
         phone: isExistingAccount.phone,
+        image_url: isExistingAccount.image_url,
+        user_tier: isExistingAccount.user_tier,
+        total_blogs: isExistingAccount.total_blogs,
+        total_posts: isExistingAccount.total_posts,
+        total_views: isExistingAccount.total_views,
+        total_likes: isExistingAccount.total_likes,
+        total_comments: isExistingAccount.total_comments,
+        joining: isExistingAccount.createdAt,
       },
     });
 
@@ -137,4 +145,88 @@ const logInToAccount = async (req, res) => {
   }
 };
 
-module.exports = { createNewAccount, logInToAccount };
+const logOutOfAccount = async (req, res) => {
+  try {
+    const { username } = req.headers;
+    const token = req.headers.authorization;
+
+    const account = await AccountCollection.findOne({ "tokens.token": token });
+    if (!account) {
+      return res
+        .status(400)
+        .send({ status: false, message: "internal sever error-token" });
+    }
+
+    if (account.username !== username) {
+      return res
+        .status(400)
+        .send({ status: false, message: "internal sever error-name" });
+    }
+
+    const newTokenArray = account.tokens.filter((data) => data.token !== token);
+
+    const updatedAccount = await AccountCollection.findOneAndUpdate(
+      { username },
+      { tokens: newTokenArray },
+      { new: true }
+    );
+
+    if (!updatedAccount) {
+      return res
+        .status(400)
+        .send({ status: false, message: "internal server error" });
+    }
+
+    res.status(200).send({ status: true, message: "logged out success" });
+
+    // res.send(req.body);
+  } catch (error) {
+    console.log("Error in logout user");
+    console.log(error);
+    res.send({ status: false, message: error });
+  }
+};
+
+const authorizeAccount = async (req, res) => {
+  const username = req.headers.username;
+  if (!username) {
+    return res
+      .status(400)
+      .send({ status: false, message: "UnAuthorized Access" });
+  }
+  console.log("object");
+  res
+    .status(200)
+    .send({ status: true, message: "Authorized Access", data: username });
+};
+
+
+const updateAccountData = async (req, res) => {
+  const {username} = req.params;
+  const existingAccount = await AccountCollection.findOne({username})
+  if (!existingAccount){
+    return res.status(400).send({status: false, message: "Account not found"})
+  }
+
+  const {first_name, last_name, phone} = req.body
+
+  const updatedAccount = await AccountCollection.findOneAndUpdate({username}, {first_name, last_name, phone}, {new: true})
+
+  res.status(200).send({status: true, message: "Account updated successfully", data: updatedAccount})
+  console.log("object");
+  res
+    .status(200)
+    .send({ status: true, message: "Authorized Access", data: username });
+};
+
+
+
+
+
+module.exports = {
+  createNewAccount,
+  logInToAccount,
+  authorizeAccount,
+  logOutOfAccount,
+  updateAccountData
+};

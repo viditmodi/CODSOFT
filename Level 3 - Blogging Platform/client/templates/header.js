@@ -1,53 +1,60 @@
-const createHeader = (parentElement, data)=>{
+const createHeader = (parentElement, data) => {
+  //orange-f// Logo
 
-    //orange-f// Logo
+  // const header = document.createElement('header')
+  // header.classList.add("header")
 
-    // const header = document.createElement('header')
-    // header.classList.add("header")
+  const logoContainer = document.createElement("div");
+  logoContainer.classList.add("header__logo-container");
 
-    const logoContainer = document.createElement('div');
-    logoContainer.classList.add("header__logo-container")
+  const logoImage = document.createElement("img");
+  logoImage.classList.add("banner__logo-image", "logo__image");
+  logoImage.src = data.logoURL;
 
-    const logoImage = document.createElement('img');
-    logoImage.classList.add("banner__logo-image", "logo__image")
-    logoImage.src = data.logoURL
+  const logoWebname = document.createElement("h2");
+  logoWebname.classList.add("header__webname");
+  logoWebname.innerText = "QuillCraft";
 
-    const logoWebname = document.createElement('h2');
-    logoWebname.classList.add("header__webname")
-    logoWebname.innerText = "QuillCraft"
+  logoContainer.appendChild(logoImage);
+  logoContainer.appendChild(logoWebname);
 
-    logoContainer.appendChild(logoImage)
-    logoContainer.appendChild(logoWebname)
+  const nav = document.createElement("nav");
+  nav.classList.add("header__nav");
+  const navList = document.createElement("ul");
+  navList.classList.add("header__nav-list");
 
+  // const navList = document.createElement('ul')
+  data.navBarData.forEach((navData) => {
+    const anchor = document.createElement("a");
+    anchor.classList.add("header__nav-link");
+    anchor.href = navData.link;
+    anchor.innerText = navData.text;
 
-    const nav = document.createElement('nav')
-    nav.classList.add("header__nav")
-    const navList = document.createElement('ul')
-    navList.classList.add("header__nav-list")
+    const listItem = document.createElement("li");
+    listItem.classList.add("header__nav-item");
+    // listItem.innerText = navData.text
 
-    // const navList = document.createElement('ul')
-    data.navBarData.forEach(navData=>{
-        const anchor = document.createElement("a")
-        anchor.classList.add("header__nav-link")
-        anchor.href = navData.link
-        anchor.innerText = navData.text
+    if (navData.active) {
+      anchor.classList.add("header__nav-link--active");
+    }
 
-        const listItem = document.createElement("li")
-        listItem.classList.add("header__nav-item")
-        // listItem.innerText = navData.text
+    listItem.appendChild(anchor);
+    navList.appendChild(listItem);
+  });
 
-        if(navData.active){
-            anchor.classList.add("header__nav-link--active")
-        }
+  nav.appendChild(navList);
 
-        listItem.appendChild(anchor)
-        navList.appendChild(listItem)
-    })
+  // header.appendChild(logoContainer)
+  parentElement.classList.add("header");
+  parentElement.appendChild(logoContainer);
+  parentElement.appendChild(nav);
 
-    nav.appendChild(navList)
+  return Promise.resolve()
+};
 
-    // header.appendChild(logoContainer)
-    parentElement.classList.add("header")
-    parentElement.appendChild(logoContainer)
-    parentElement.appendChild(nav)
-}
+// function createHeader(parentElement, data) {
+//     return new Promise(function(resolve, reject) {
+//       Header(parentElement, data)
+//       resolve();
+//     });
+//   }

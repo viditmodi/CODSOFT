@@ -87,13 +87,13 @@
       };
       const header = document.getElementById("Header");
       createLoader()
-      const onLoadHandler = () => {
+      const onLoadHandler = async () => {
         console.log("Login Page");
-        if (checkLoginStatus()) {
+        if (await checkLoginStatus()) {
           window.location.href = "/pages/user/dashboard.html";
         }
-        createHeader(header, loadData);
-        createSideNavBar(loadData.navBarData)
+        await createHeader(header, loadData);
+        await createSideNavBar(loadData.navBarData)
 
 
         removeLoader()
