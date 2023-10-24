@@ -135,7 +135,7 @@
     <!-- red-f// register Form Submit -->
     <script>
       //remove
-      let userNumber = 11;
+      // let userNumber = 11;
 
       const registerForm = document.getElementById("registerForm");
 
@@ -151,24 +151,24 @@
       registerForm.addEventListener("submit", async (e) => {
         createLoader("Creating New Account");
         e.preventDefault();
-        // const data = {
-        //   first_name: firstName.value,
-        //   last_name: lastName.value,
-        //   username: username.value,
-        //   email: email.value,
-        //   phone: phone.value,
-        //   password: password.value,
-        //   confirm_password: confirmPassword.value,
-        // };
         const data = {
-          first_name: "test" + userNumber,
-          last_name: "test" + userNumber,
-          username: "test" + userNumber,
-          email: "test" + userNumber + "@mail.com",
-          phone: "9876543215",
-          password: "Test@1234",
-          confirm_password: "Test@1234",
+          first_name: firstName.value,
+          last_name: lastName.value,
+          username: username.value,
+          email: email.value,
+          phone: phone.value,
+          password: password.value,
+          confirm_password: confirmPassword.value,
         };
+        // const data = {
+        //   first_name: "test" + userNumber,
+        //   last_name: "test" + userNumber,
+        //   username: "test" + userNumber,
+        //   email: "test" + userNumber + "@mail.com",
+        //   phone: "9876543215",
+        //   password: "Test@1234",
+        //   confirm_password: "Test@1234",
+        // };
 
         // console.log(data);
 
@@ -180,7 +180,7 @@
           });
 
           const res = await response.json();
-          userNumber++;
+          // userNumber++;
           console.log(res);
 
           if (!res.status) {
