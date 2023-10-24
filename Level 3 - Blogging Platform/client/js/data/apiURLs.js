@@ -8,4 +8,4 @@ const allBlogURL = `${baseURL}/blog/all/`
 
 
 
-const accountBaseURL = `${baseURL}/account`
+const accountBaseURL = `${baseURL}/account/`
