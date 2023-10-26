@@ -5,6 +5,7 @@ const cors = require("cors")
 const {connectToServer, clearAllCollections} = require("./config/db.config")
 const accountRouter = require("./routes/accounts.routes")
 const blogRouter = require("./routes/blogs.routes")
+const postsRouter = require("./routes/posts.routes")
 
 const app = express()
 const port = process.env.PORT;
@@ -30,6 +31,7 @@ app.use('/uploads', express.static('uploads'));
 
 app.use("/account", accountRouter)
 app.use("/blog", blogRouter)
+app.use("/posts", postsRouter)
 
 
 

@@ -19,7 +19,15 @@
   </head>
   <body onload="onLoadHandler()">
     <header class="header" id="Header"></header>
-    posts
+
+    <section id="blogSelector">
+      <select name="blogDropdown" id="blogDropdown"></select>
+      <button onclick="setBlog()">select</button>
+    </section>
+
+    <section class="posts-view" id="posts">Posts wil go here</section>
+
+    <button id="newPostButton">New Post</button>
 
     <script>
       const loadData = {
@@ -47,6 +55,22 @@
       const header = document.getElementById("Header");
       const body = document.getElementsByTagName("body")[0];
       createLoader()
+
+
+      const params = new URLSearchParams(window.location.search);
+      const blogID = params.get("blogid");
+
+      const newPostButton = document.getElementById("newPostButton")
+      newPostButton.addEventListener("click", ()=>{
+        if(blogID){
+          window.location.href = "/pages/blog/add-post.html?blogid="+blogID
+        }
+        else{
+          window.location.href = "/pages/blog/add-post.html"
+        }
+      })
+
+
       const onLoadHandler = () => {
         if (!checkLoginStatus()) {
           window.location.href = "/pages/auth/login.html";
@@ -54,8 +78,44 @@
         createHeader(header, loadData)
         createSideNavBar(loadData.navBarData);
 
+        const blogList = JSON.parse(
+          localStorage.getItem("quillcraft_userbloglist")
+        );
+
+        const blogDropdown = document.getElementById("blogDropdown");
+        blogList.forEach((blog) => {
+          const option = document.createElement("option");
+          option.value = blog.blogID;
+          option.innerText = blog.title;
+          // option.addEventListener('click', ()=>{
+          //     console.log(`http://127.0.0.1:5501/pages/blog/add-post.html?blogid=${blog.blogID}`)
+          //     window.location.href = `http://127.0.0.1:5501/pages/blog/add-post.html?blogid=${blog.blogID}`
+          // })
+
+          blogDropdown.appendChild(option);
+        });
+
+        const newPost = document.getElementById("posts");
+        const blogSelector = document.getElementById("blogSelector");
+        if (!blogID) {
+          newPost.style.display = "none";
+          blogSelector.style.display = "flex";
+        } else {
+          newPost.style.display = "block";
+          blogSelector.style.display = "none";
+        }
+
+
+
 
         removeLoader()
+      };
+
+
+      const setBlog = () => {
+        const blogDropdown = document.getElementById("blogDropdown");
+
+        window.location.href = `/pages/user/posts.html?blogid=${blogDropdown.value}`;
       };
     </script>
   </body>

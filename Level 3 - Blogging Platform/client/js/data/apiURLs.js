@@ -3,6 +3,10 @@ const baseURL = "https://quillcraft-api.onrender.com"
 
 
 
+const postsBaseURL = `${baseURL}/posts/`
+const allPostURL = `${baseURL}/posts/all/`
+
+
 const blogBaseURL = `${baseURL}/blog/`
 const allBlogURL = `${baseURL}/blog/all/`
 

@@ -182,6 +182,7 @@
             createBlogCard(blogGallery, blogData);
           });
           console.log(res)
+          localStorage.setItem('quillcraft_userbloglist', JSON.stringify(res.data))
         } catch (error) {
           console.log(error)
         }
@@ -263,6 +264,9 @@
           const res = await response.json()
 
           createBlogCard(blogGallery, res.data);
+          const blogList = JSON.parse(localStorage.getItem('quillcraft_userbloglist'))
+          blogList.push(res.data)
+          localStorage.setItem('quillcraft_userbloglist', JSON.stringify(blogList))
           blogForm.reset()
           const blogThumbnailImage = document.getElementById("blogThumbnailImage");
           blogThumbnailImage.src = "/assets/images/default_blog.png"

@@ -15,6 +15,13 @@ const createNewBlog = async (req, res) => {
         .send({ status: false, message: "Author Does Not Exist" });
     }
 
+    const isExistingBlog = await BlogsCollection.findOne({ title: title, author: author });
+    if (isExistingBlog) {
+      return res
+        .status(400)
+        .send({ status: false, message: "Blog Already Exists" });
+    }
+
     const thumbnail = process.env.URL + req.file.path;
 
     const newBlog = new BlogsCollection({

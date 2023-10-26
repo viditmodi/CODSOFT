@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/css/main.css" />
+    <script src="/templates/header.js"></script>
+    <script src="/templates/sideNavBar.js"></script>
+    <script src="/templates/loader.js"></script>
+
+    <script src="/js/data/apiURLs.js"></script>
+    <script src="/js/generators.js"></script>
+  </head>
+  <body onload="onLoadHandler()">
+    <header class="header" id="Header"></header>
+
+    <section id="blogSelector">
+      <select name="blogDropdown" id="blogDropdown"></select>
+      <button onclick="setBlog()">select</button>
+    </section>
+
+    <section class="add-post__container wrapper" id="newPost">
+      <form class="add-post__left add-post__form" id="postForm">
+        <div>
+            <img src="" alt="" id="postThumbnailImage">
+            <input type="file" name="postThumbnail" id="postThumbnail">
+        </div>
+        <input
+          type="text"
+          name="postTitle"
+          id="postTitle"
+          placeholder="title"
+        />
+      </form>
+
+      <div class="add-post__tools">
+        <button onclick="createNewImage()">image</button>
+        <button onclick="createNewText()">text</button>
+        <button onclick="createNewHeading()">heading</button>
+      </div>
+      <!-- <div class="add-post__left add-post__settings">
+            settings
+        </div> -->
+      <button onclick="createPost()">create</button>
+    </section>
+
+    <!-- yellow-f// JS -->
+
+    <!-- red-f// Data -->
+    <script>
+      const loadData = {
+        logoURL: "../../assets/images/logo.png",
+        navBarData: [
+          {
+            link: "/pages/user/dashboard.html",
+            text: "dashboard",
+          },
+          {
+            link: "/pages/user/blogs.html",
+            text: "blogs",
+          },
+          {
+            link: "/pages/user/posts.html",
+            text: "posts",
+          },
+          {
+            link: "/pages/auth/logout.html",
+            text: "logout",
+          },
+        ],
+      };
+    </script>
+    <!-- red-f// On Load Handler -->
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const blogID = params.get("blogid");
+
+      const header = document.getElementById("Header");
+      createLoader();
+      const onLoadHandler = async () => {
+        await createHeader(header, loadData);
+        createSideNavBar(loadData.navBarData);
+
+        const blogList = JSON.parse(
+          localStorage.getItem("quillcraft_userbloglist")
+        );
+
+        const blogDropdown = document.getElementById("blogDropdown");
+        blogList.forEach((blog) => {
+          const option = document.createElement("option");
+          option.value = blog.blogID;
+          option.innerText = blog.title;
+          // option.addEventListener('click', ()=>{
+          //     console.log(`http://127.0.0.1:5501/pages/blog/add-post.html?blogid=${blog.blogID}`)
+          //     window.location.href = `http://127.0.0.1:5501/pages/blog/add-post.html?blogid=${blog.blogID}`
+          // })
+
+          blogDropdown.appendChild(option);
+        });
+
+        const newPost = document.getElementById("newPost");
+        const blogSelector = document.getElementById("blogSelector");
+        if (!blogID) {
+          newPost.style.display = "none";
+          blogSelector.style.display = "flex";
+        } else {
+          newPost.style.display = "block";
+          blogSelector.style.display = "none";
+        }
+
+        removeLoader();
+      };
+    </script>
+    <!-- red-f// Tools Functions-->
+    <script>
+      // <!-- orange-f// New Heading
+      const createNewHeading = () => {
+        console.log("heading");
+
+        const postForm = document.getElementById("postForm");
+
+        const headingContainer = document.createElement("div");
+
+        const headingForm = document.createElement("div");
+        const headingPreview = document.createElement("div");
+
+        const headingTextBox = document.createElement("input");
+        headingTextBox.type = "text";
+        headingTextBox.placeholder = "heading";
+        headingTextBox.classList.add(
+          "add-post__heading-input",
+          "add-post__input"
+        );
+        headingTextBox.setAttribute("data-type", "heading");
+
+        headingForm.appendChild(headingTextBox);
+        const headingTag = document.createElement("h2");
+        headingTag.innerText = "Heading preview";
+
+        headingPreview.appendChild(headingTag);
+        headingTextBox.addEventListener("change", (e) => {
+          headingTag.innerText = e.target.value;
+        });
+
+        headingContainer.appendChild(headingPreview);
+        headingContainer.appendChild(headingForm);
+        // headingContainer.classList.add("heading heading--2")
+        postForm.appendChild(headingContainer);
+      };
+
+      // <!-- orange-f// New Text
+      const createNewText = () => {
+        console.log("text");
+
+        const postForm = document.getElementById("postForm");
+
+        const textContainer = document.createElement("div");
+
+        const textForm = document.createElement("div");
+        const textPreview = document.createElement("div");
+
+        const textTextBox = document.createElement("textarea");
+        textTextBox.placeholder = "enter text";
+
+        textTextBox.classList.add("add-post__text-input", "add-post__input");
+        textTextBox.setAttribute("data-type", "text");
+
+        textForm.appendChild(textTextBox);
+
+        const textTag = document.createElement("p");
+        textTag.innerText = "text preview";
+
+        textPreview.appendChild(textTag);
+        textTextBox.addEventListener("change", (e) => {
+          textTag.innerText = e.target.value;
+        });
+
+        textContainer.appendChild(textPreview);
+        textContainer.appendChild(textForm);
+        // textContainer.classList.add("text text--2")
+        postForm.appendChild(textContainer);
+      };
+
+      // <!-- orange-f// New Image
+      const createNewImage = () => {
+        console.log("image");
+        const postForm = document.getElementById("postForm");
+
+        const imageContainer = document.createElement("div");
+
+        const imageForm = document.createElement("div");
+        const imagePreview = document.createElement("div");
+
+        const imageInput = document.createElement("input");
+        imageInput.type = "file";
+        imageInput.classList.add("add-post__image-input", "add-post__input");
+        imageInput.setAttribute("data-type", "image");
+        // imageInput.placeholder = "enter image"
+
+        imageForm.appendChild(imageInput);
+
+        const imageTag = document.createElement("img");
+        // imageTag.src = "image preview"
+
+        imagePreview.appendChild(imageTag);
+        imageInput.addEventListener("change", (e) => {
+          previewImage(e, imageTag);
+        });
+
+        imageContainer.appendChild(imagePreview);
+        imageContainer.appendChild(imageForm);
+        // imageContainer.classList.add("image image--2")
+        postForm.appendChild(imageContainer);
+      };
+
+      const previewImage = (event, imgTag) => {
+        // const blogThumbnail = document.getElementById("blogThumbnailImage");
+        let input = event.target;
+        //  var image = document.getElementById('preview');
+        if (input.files && input.files[0]) {
+          let reader = new FileReader();
+          reader.onload = function (e) {
+            imgTag.src = e.target.result;
+          };
+          reader.readAsDataURL(input.files[0]);
+        }
+      };
+    </script>
+
+    <!-- red-f// Post Submit Handler-->
+    <script>
+        const postThumbnail = document.getElementById("postThumbnail")
+        postThumbnail.addEventListener("change", (e)=>{
+            previewImage(e, document.getElementById("postThumbnailImage"))
+        })
+      const createPost = async () => {
+        const data = [];
+        const postData = new FormData();
+        const postID = postIDGenerator();
+
+
+
+
+        console.log(postThumbnail.files[0]);
+            const image = postThumbnail.files[0];
+            let blob = image.slice(0, image.size, image.type);
+            const newImageName = `${postID}_thumbnail.${image.type.split("/")[1]}`;
+            const newImage = new File(
+              [blob],
+              newImageName,
+              { type: image.type }
+            );
+            console.log(newImage);
+            postData.append("images", newImage);
+
+
+
+        postData.append("thumbnail", newImageName);
+        postData.append("postID", postID);
+        postData.append("blogID", blogID);
+        postData.append("title", document.getElementById("postTitle").value);
+
+        const imageArray = document.getElementsByClassName(
+          "add-post__image-input"
+        );
+
+        const inputArray = document.getElementsByClassName("add-post__input");
+
+        let imageCount = 0;
+
+        for (let i = 0; i < inputArray.length; i++) {
+          // console.log(imageInput.files[0])
+          // postData.append("images", imageInput.files[0])
+          const inputType = inputArray[i].getAttribute("data-type");
+          console.log(inputType);
+          if (inputType === "image") {
+            console.log(inputArray[i].files[0]);
+            const image = inputArray[i].files[0];
+            let blob = image.slice(0, image.size, image.type);
+            const newImage = new File(
+              [blob],
+              `${postID}_image_${imageCount}.${image.type.split("/")[1]}`,
+              { type: image.type }
+            );
+            imageCount++;
+            console.log(newImage);
+            postData.append("images", newImage);
+
+            data.push({
+              type: inputType,
+              data: newImage.name,
+            });
+          } else {
+            data.push({
+              type: inputType,
+              data: inputArray[i].value,
+            });
+          }
+        }
+
+        console.log(data);
+        postData.append("data", JSON.stringify(data));
+
+        console.log("object");
+        try {
+          const response = await fetch(postsBaseURL + `?postID=${postID}`, {
+            method: "POST",
+            // headers: {"Content-Type": "application/json"},
+            body: postData,
+          });
+          const res = await response.json();
+
+          //   createBlogCard(blogGallery, res.data);
+          //   const blogList = JSON.parse(localStorage.getItem('quillcraft_userbloglist'))
+          //   blogList.push(res.data)
+          //   localStorage.setItem('quillcraft_userbloglist', JSON.stringify(blogList))
+          //   blogForm.reset()
+          //   const blogThumbnailImage = document.getElementById("blogThumbnailImage");
+          //   blogThumbnailImage.src = "/assets/images/default_blog.png"
+          //   localStorage.setItem("quillcraft_userdata", JSON.stringify(res.userdata))
+
+          console.log("res");
+          console.log(res);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      const setBlog = () => {
+        const blogDropdown = document.getElementById("blogDropdown");
+
+        window.location.href = `/pages/blog/add-post.html?blogid=${blogDropdown.value}`;
+      };
+    </script>
+  </body>
+</html>

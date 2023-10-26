@@ -17,5 +17,8 @@ const randomStringGenerator = (num)=>{
 const blogIDGenerator = ()=>{
     return randomStringGenerator(40)
 }
+const postIDGenerator = ()=>{
+    return randomStringGenerator(50)
+}
 
 // console.log(blogIDGenerator())

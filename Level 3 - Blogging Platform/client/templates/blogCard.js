@@ -61,6 +61,8 @@ const createBlogCard = (parent, data) => {
   const cardContainer = document.createElement("div");
   cardContainer.classList.add("blog-gallery__grid__card");
 
+  
+
   // orange-f// FRONT FACE
   const cardFrontFace = document.createElement("div");
   cardFrontFace.classList.add("blog-gallery__grid__card--front");
@@ -170,13 +172,13 @@ const createBlogCard = (parent, data) => {
 
     metadata.appendChild(metaDataIcon);
 
-    const metaDataText = document.createElement("span");
-    metaDataText.innerText = meta.text;
+    // const metaDataText = document.createElement("span");
+    // metaDataText.innerText = meta.text;
 
-    metadata.appendChild(metaDataText);
+    // metadata.appendChild(metaDataText);
 
     const metaDataData = document.createElement("span");
-    metaDataData.innerText = `${meta.data}............................`;
+    metaDataData.innerText = `${meta.data} .....................................................`;
 
     metadata.appendChild(metaDataData);
 
@@ -184,9 +186,9 @@ const createBlogCard = (parent, data) => {
   });
 
   const readMoreBtn = document.createElement("a");
-  readMoreBtn.href = `/pages/blog.html?blogid=${data.blogID}`;
+  readMoreBtn.href = `/pages/user/posts.html?blogid=${data.blogID}`;
   console.log(`/pages/blog.html?blogid=${data.blogID}`);
-  readMoreBtn.textContent = "read more";
+  readMoreBtn.textContent = "see posts";
   readMoreBtn.classList.add("btn", "btn__push", "btn__push--focus");
 
   cardBackFace.appendChild(backCategory);
@@ -197,4 +199,18 @@ const createBlogCard = (parent, data) => {
   cardContainer.appendChild(cardBackFace);
 
   parent.appendChild(cardContainer);
+
+  const cardWidth = cardContainer.offsetWidth;
+  console.log(cardWidth)
+  const parentWidth = parent.offsetWidth;
+  console.log(parentWidth)
+
+
+  // frontTitle.style.fontSize = `${cardWidth/11}px`
+  // frontDesc.style.fontSize = `${cardWidth/19}px`
+  // authorName.style.fontSize = `${cardWidth/19}px`
+  
+
+  // const metadataArray = document.getElementsByClassName("blog-gallery__grid__card__metadata")
+
 };
