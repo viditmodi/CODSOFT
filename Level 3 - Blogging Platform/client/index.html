@@ -9,8 +9,10 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
 
-    <script src="./templates/blogCard.js"></script>
+    <script src="./templates/footer.template.js"></script>
+    <script src="./templates/gallery.js"></script>
     <script src="./js/auth.js"></script>
+    <script src="./js/search.js"></script>
     <script src="./templates/loader.js"></script>
     <title>QuillCraft Website</title>
   </head>
@@ -41,7 +43,7 @@
           >
         </ul>
       </nav>
-      <form action="" class="banner__form">
+      <form action="" class="banner__form" id="searchForm">
         <input
           type="text"
           name="bannerSearch"
@@ -52,229 +54,15 @@
       </form>
     </section>
 
+
     <!--green-f// Blog Gallery Section -->
-    <section class="blog-gallery wrapper">
-      <div class="blog-gallery__heading">
-        <h2 class="blog-gallery__title heading heading--3">Featured Blogs</h2>
-        <p>toggle btn</p>
-      </div>
-
-      <div class="blog-gallery__grid" id="blogGallery">
-        <div class="blog-gallery__grid__card">
-          <div class="blog-gallery__grid__card--front">
-            <div class="blog-gallery__grid__card__image-container">
-              <img
-                src="https://images.unsplash.com/photo-1598124146163-36819847286d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8anBnfGVufDB8fDB8fHww&w=1000&q=80"
-                alt="image"
-                class="blog-gallery__grid__card__image"
-              />
-            </div>
-            <div class="blog-gallery__grid__card__content">
-              <!-- <div class="blog-gallery__grid__card__meta">
-                      <div class="blog-gallery__grid__card__category">category</div>
-                      <p class="blog-gallery__grid__card__metadata">
-                        <span class="material-symbols-outlined"> calendar_month </span
-                        >date
-                      </p>
-                      <p class="blog-gallery__grid__card__metadata">
-                        <span class="material-symbols-outlined"> thumb_up </span>likes
-                      </p>
-                    </div> -->
-
-              <h4 class="blog-gallery__grid__card__title">this is title</h4>
-              <p class="blog-gallery__grid__card__desc">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptates sequi deserunt, magnam corporis recusandae ab maxime
-                a, incidunt quam et officiis ad nostrum labore, fugiat
-                cupiditate fugit sint repudiandae minus?
-              </p>
-
-              <div class="blog-gallery__grid__card__author">
-                <div class="blog-gallery__grid__card__author__image-container">
-                  <img
-                    src="https://images.unsplash.com/photo-1524550158212-33f2ff985344?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
-                    alt="author"
-                    class="blog-gallery__grid__card__author__image"
-                  />
-                </div>
-                <p class="blog-gallery__grid__card__author__name">
-                  author name
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="blog-gallery__grid__card--back">
-            <div class="blog-gallery__grid__card__category">category</div>
-            <div class="blog-gallery__grid__card__meta">
-              <p class="blog-gallery__grid__card__metadata">
-                <span class="material-symbols-outlined"> calendar_month </span
-                >date
-              </p>
-              <p class="blog-gallery__grid__card__metadata">
-                <span class="material-symbols-outlined"> thumb_up </span>likes
-              </p>
-              <p class="blog-gallery__grid__card__metadata">
-                <span class="material-symbols-outlined"> visibility </span>total
-                views
-              </p>
-              <p class="blog-gallery__grid__card__metadata">
-                <span class="material-symbols-outlined">
-                  <span class="material-symbols-outlined"> comment </span></span
-                >comments
-              </p>
-            </div>
-            <button class="btn">read</button>
-          </div>
-        </div>
-
-        <div class="blog-gallery__grid__card">
-          <div class="blog-gallery__grid__card--front">
-            <div class="blog-gallery__grid__card__image-container">
-              <img
-                src="https://images.unsplash.com/photo-1598124146163-36819847286d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8anBnfGVufDB8fDB8fHww&w=1000&q=80"
-                alt="image"
-                class="blog-gallery__grid__card__image"
-              />
-            </div>
-            <div class="blog-gallery__grid__card__content">
-              <!-- <div class="blog-gallery__grid__card__meta">
-                      <div class="blog-gallery__grid__card__category">category</div>
-                      <p class="blog-gallery__grid__card__metadata">
-                        <span class="material-symbols-outlined"> calendar_month </span
-                        >date
-                      </p>
-                      <p class="blog-gallery__grid__card__metadata">
-                        <span class="material-symbols-outlined"> thumb_up </span>likes
-                      </p>
-                    </div> -->
-
-              <h4 class="blog-gallery__grid__card__title">this is title</h4>
-              <p class="blog-gallery__grid__card__desc">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptates sequi deserunt, magnam corporis recusandae ab maxime
-                a, incidunt quam et officiis ad nostrum labore, fugiat
-                cupiditate fugit sint repudiandae minus?
-              </p>
-
-              <div class="blog-gallery__grid__card__author">
-                <div class="blog-gallery__grid__card__author__image-container">
-                  <img
-                    src="https://images.unsplash.com/photo-1524550158212-33f2ff985344?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
-                    alt="author"
-                    class="blog-gallery__grid__card__author__image"
-                  />
-                </div>
-                <p class="blog-gallery__grid__card__author__name">
-                  author name
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="blog-gallery__grid__card--back">
-            <div class="blog-gallery__grid__card__category">category</div>
-
-            <div class="blog-gallery__grid__card__meta">
-              <p class="blog-gallery__grid__card__metadata">
-                <span class="material-symbols-outlined"> calendar_month </span>
-                <span>date.........................</span>
-                <span>............22/07/2001</span>
-              </p>
-              <p class="blog-gallery__grid__card__metadata">
-                <span class="material-symbols-outlined"> thumb_up </span>
-                <span>likes.........................</span>
-                <span>>............745</span>
-              </p>
-              <p class="blog-gallery__grid__card__metadata">
-                <span class="material-symbols-outlined"> visibility </span>
-                <span>total views.........................</span>
-                <span>>............745</span>
-              </p>
-              <p class="blog-gallery__grid__card__metadata">
-                <span class="material-symbols-outlined">
-                  <span class="material-symbols-outlined"> comment </span></span
-                >
-                <span>comments.........................</span>
-                <span>>............745</span>
-              </p>
-            </div>
-            <button class="btn btn--">read</button>
-          </div>
-        </div>
-
-        <div class="blog-gallery__grid__card">
-          <div class="blog-gallery__grid__card--front">
-            <div class="blog-gallery__grid__card__image-container">
-              <img
-                src="https://images.unsplash.com/photo-1598124146163-36819847286d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8anBnfGVufDB8fDB8fHww&w=1000&q=80"
-                alt="image"
-                class="blog-gallery__grid__card__image"
-              />
-            </div>
-            <div class="blog-gallery__grid__card__content">
-              <!-- <div class="blog-gallery__grid__card__meta">
-                      <div class="blog-gallery__grid__card__category">category</div>
-                      <p class="blog-gallery__grid__card__metadata">
-                        <span class="material-symbols-outlined"> calendar_month </span
-                        >date
-                      </p>
-                      <p class="blog-gallery__grid__card__metadata">
-                        <span class="material-symbols-outlined"> thumb_up </span>likes
-                      </p>
-                    </div> -->
-
-              <h4 class="blog-gallery__grid__card__title">this is title</h4>
-              <p class="blog-gallery__grid__card__desc">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptates sequi deserunt, magnam corporis recusandae ab maxime
-                a, incidunt quam et officiis ad nostrum labore, fugiat
-                cupiditate fugit sint repudiandae minus?
-              </p>
-
-              <div class="blog-gallery__grid__card__author">
-                <div class="blog-gallery__grid__card__author__image-container">
-                  <img
-                    src="https://images.unsplash.com/photo-1524550158212-33f2ff985344?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
-                    alt="author"
-                    class="blog-gallery__grid__card__author__image"
-                  />
-                </div>
-                <p class="blog-gallery__grid__card__author__name">
-                  author name
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="blog-gallery__grid__card--back">
-            <div class="blog-gallery__grid__card__category">category</div>
-            <div class="blog-gallery__grid__card__meta">
-              <p class="blog-gallery__grid__card__metadata">
-                <span class="material-symbols-outlined"> calendar_month </span
-                >date
-              </p>
-              <p class="blog-gallery__grid__card__metadata">
-                <span class="material-symbols-outlined"> thumb_up </span>likes
-              </p>
-              <p class="blog-gallery__grid__card__metadata">
-                <span class="material-symbols-outlined"> visibility </span>total
-                views
-              </p>
-              <p class="blog-gallery__grid__card__metadata">
-                <span class="material-symbols-outlined">
-                  <span class="material-symbols-outlined"> comment </span></span
-                >comments
-              </p>
-            </div>
-            <button class="btn">read</button>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="wrapper" id="galleryContainer"></section>
+    
 
     <!--red-f// Blogger Gallery Section -->
     <section class="blogger-gallery wrapper">Bloggers Gallery</section>
     <!--red-f// Footer Section -->
-    <footer class="footer">This is Footer</footer>
+    <footer class="footer" id="Footer"></footer>
 
     <script>
       const blogGallery = document.getElementById("blogGallery");
@@ -343,12 +131,29 @@
         if (checkLoginStatus()) {
           window.location.href = "/pages/user/dashboard.html";
         }
-        blogsDataArray.forEach((blogData) => {
-          createBlogCard(blogGallery, blogData);
-        });
+
+
+
+        createGallery(document.getElementById("galleryContainer"), "blog", "Featured Blogs", blogsDataArray)
+
+        createFooter()
+
+
+        // blogsDataArray.forEach((blogData) => {
+        //   createBlogCard(blogGallery, blogData);
+        // });
 
         removeLoader()
       };
+    </script>
+
+    <script>
+      document.getElementById("searchForm").addEventListener("submit", async (e)=>{
+        e.preventDefault()
+        console.log("searching")
+        const textbox = document.getElementById("bannerSearch")
+        const res = await searchBar(textbox.value)
+      })
     </script>
   </body>
 </html>

@@ -33,6 +33,8 @@
           id="postTitle"
           placeholder="title"
         />
+
+        <textarea name="postDesc" id="postDesc" cols="30" rows="10" placeholder="desc"></textarea>
       </form>
 
       <div class="add-post__tools">
@@ -261,6 +263,7 @@
         postData.append("postID", postID);
         postData.append("blogID", blogID);
         postData.append("title", document.getElementById("postTitle").value);
+        postData.append("desc", document.getElementById("postDesc").value);
 
         const imageArray = document.getElementsByClassName(
           "add-post__image-input"
@@ -323,6 +326,7 @@
 
           console.log("res");
           console.log(res);
+          localStorage.setItem("quillcraft_userdata", JSON.stringify(res.userdata))
         } catch (error) {
           console.log(error);
         }

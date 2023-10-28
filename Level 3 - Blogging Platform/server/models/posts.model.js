@@ -14,6 +14,9 @@ const postsSchema = mongoose.Schema(
     blogID: {
       type: String,
     },
+    desc: {
+      type: String,
+    },
     title: {
       type: String,
     },

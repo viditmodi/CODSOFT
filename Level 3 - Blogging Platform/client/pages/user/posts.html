@@ -13,7 +13,9 @@
     <script src="../../templates/header.js"></script>
     <script src="../../templates/loader.js"></script>
     <script src="../../templates/sideNavBar.js"></script>
+    <script src="../../templates/gallery.js"></script>
     <script src="../../js/auth.js"></script>
+    <script src="/js/data/apiURLs.js"></script>
 
     <title>Document</title>
   </head>
@@ -25,7 +27,16 @@
       <button onclick="setBlog()">select</button>
     </section>
 
-    <section class="posts-view" id="posts">Posts wil go here</section>
+    <section class="posts-view" id="posts">
+      <div class="posts-view__blog-meta-group wrapper">
+        <!-- bg will be the thumbnail -->
+        <div class="posts-view__blog-meta">
+          <button>like</button>
+          <button>follow</button>
+        </div>
+      </div>
+      <section class="wrapper" id="galleryContainer"></section>
+    </section>
 
     <button id="newPostButton">New Post</button>
 
@@ -71,7 +82,7 @@
       })
 
 
-      const onLoadHandler = () => {
+      const onLoadHandler = async () => {
         if (!checkLoginStatus()) {
           window.location.href = "/pages/auth/login.html";
         }
@@ -103,7 +114,18 @@
         } else {
           newPost.style.display = "block";
           blogSelector.style.display = "none";
+          
+          const response = await fetch(allPostURL + `?blogID=${blogID}`)
+          const res = await response.json()
+  
+          console.log(res.data)
+  
+          createGallery(document.getElementById("galleryContainer"), "posts", "Blog List", res.data)
         }
+
+
+
+
 
 
 

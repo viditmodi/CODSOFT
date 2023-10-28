@@ -16,11 +16,13 @@
 @import "./layout/header.css";
 @import "./layout/grid_container.css";
 @import "./layout/auth_form.css";
+@import "./layout/post.css";
 
 @import "./components/logo.css";
 @import "./components/side_navbar.css";
 @import "./components/loader.css";
 @import "./components/id_card.css";
+@import "./components/post_card.css";
 
 
 @import "./pages/login_page.css";

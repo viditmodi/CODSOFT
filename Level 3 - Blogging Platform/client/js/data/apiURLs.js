@@ -13,3 +13,8 @@ const allBlogURL = `${baseURL}/blog/all/`
 
 
 const accountBaseURL = `${baseURL}/account/`
+
+const commentBaseURL = `${baseURL}/comments/`
+const allCommentURL = `${baseURL}/comments/all`
+
+const searchBaseURL = `${baseURL}/search`

@@ -55,6 +55,8 @@ const accountSchema = mongoose.Schema(
         type: Number,
         default: 0
     },
+    liked: [{type: String}],
+    following: [{type: String}],
     tokens: [
       {
         token: { type: String },

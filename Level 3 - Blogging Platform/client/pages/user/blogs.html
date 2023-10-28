@@ -11,7 +11,8 @@
     />
 
     <script src="../../templates/header.js"></script>
-    <script src="../../templates/blogCard.js"></script>
+    <!-- <script src="../../templates/blogCard.js"></script> -->
+    <script src="../../templates/gallery.js"></script>
     <script src="../../templates/footer.template.js"></script>
     <script src="../../templates/loader.js"></script>
     <script src="../../templates/sideNavBar.js"></script>
@@ -58,16 +59,7 @@
         </form>
       </section>
 
-      <section class="blog-gallery wrapper">
-        <div class="blog-gallery__heading">
-          <h2 class="blog-gallery__title heading heading--3">Your Blogs</h2>
-          <p>toggle btn</p>
-        </div>
-
-        <div class="blog-gallery__grid" id="blogGallery"></div>
-
-        
-      </section>
+      <section class="wrapper" id="galleryContainer"></section>
 
       <!-- <button class="btn btn__push btn__push--focus blogs__btn" onclick="showNewBlog()">New</button> -->
     </section>
@@ -178,9 +170,10 @@
           const response = await fetch(allBlogURL + userdata.username)
           const res = await response.json()
           
-          res.data.forEach((blogData) => {
-            createBlogCard(blogGallery, blogData);
-          });
+          createGallery(document.getElementById("galleryContainer"), "blog", "Your Blogs", res.data)
+          // res.data.forEach((blogData) => {
+          //   createBlogCard(blogGallery, blogData);
+          // });
           console.log(res)
           localStorage.setItem('quillcraft_userbloglist', JSON.stringify(res.data))
         } catch (error) {
@@ -263,7 +256,7 @@
           })
           const res = await response.json()
 
-          createBlogCard(blogGallery, res.data);
+          createBlogCard(document.getElementsByClassName("blog-gallery__grid")[0], res.data);
           const blogList = JSON.parse(localStorage.getItem('quillcraft_userbloglist'))
           blogList.push(res.data)
           localStorage.setItem('quillcraft_userbloglist', JSON.stringify(blogList))

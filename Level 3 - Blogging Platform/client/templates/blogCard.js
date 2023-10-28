@@ -1,61 +1,61 @@
-const categoryColors = {
-  travel: {
-    bg: "#2ca58d", // Background color
-    text: "#ffffff", // Text color (white)
-  },
-  food: {
-    bg: "#2ca58d",
-    text: "#ffffff",
-  },
-  health: {
-    bg: "#2ca58d",
-    text: "#ffffff",
-  },
-  technology: {
-    bg: "#3a84e0",
-    text: "#ffffff",
-  },
-  finance: {
-    bg: "#3a84e0",
-    text: "#ffffff",
-  },
-  education: {
-    bg: "#531dab",
-    text: "#ffffff",
-  },
-  art: {
-    bg: "#531dab",
-    text: "#ffffff",
-  },
-  entertainment: {
-    bg: "#e74c3c",
-    text: "#ffffff",
-  },
-  gaming: {
-    bg: "#e74c3c",
-    text: "#ffffff",
-  },
-  lifestyle: {
-    bg: "#4b4b4b",
-    text: "#ffffff",
-  },
-  animals: {
-    bg: "#4b4b4b",
-    text: "#ffffff",
-  },
-  fashion: {
-    bg: "#f4d03f",
-    text: "#000000",
-  },
-  motivation: {
-    bg: "#f4d03f",
-    text: "#000000",
-  },
-  general: {
-    bg: "#00ff00",
-    text: "#ffffff",
-  },
-};
+// const categoryColors = {
+//   travel: {
+//     bg: "#2ca58d", // Background color
+//     text: "#ffffff", // Text color (white)
+//   },
+//   food: {
+//     bg: "#2ca58d",
+//     text: "#ffffff",
+//   },
+//   health: {
+//     bg: "#2ca58d",
+//     text: "#ffffff",
+//   },
+//   technology: {
+//     bg: "#3a84e0",
+//     text: "#ffffff",
+//   },
+//   finance: {
+//     bg: "#3a84e0",
+//     text: "#ffffff",
+//   },
+//   education: {
+//     bg: "#531dab",
+//     text: "#ffffff",
+//   },
+//   art: {
+//     bg: "#531dab",
+//     text: "#ffffff",
+//   },
+//   entertainment: {
+//     bg: "#e74c3c",
+//     text: "#ffffff",
+//   },
+//   gaming: {
+//     bg: "#e74c3c",
+//     text: "#ffffff",
+//   },
+//   lifestyle: {
+//     bg: "#4b4b4b",
+//     text: "#ffffff",
+//   },
+//   animals: {
+//     bg: "#4b4b4b",
+//     text: "#ffffff",
+//   },
+//   fashion: {
+//     bg: "#f4d03f",
+//     text: "#000000",
+//   },
+//   motivation: {
+//     bg: "#f4d03f",
+//     text: "#000000",
+//   },
+//   general: {
+//     bg: "#00ff00",
+//     text: "#ffffff",
+//   },
+// };
 
 const createBlogCard = (parent, data) => {
   const cardContainer = document.createElement("div");
