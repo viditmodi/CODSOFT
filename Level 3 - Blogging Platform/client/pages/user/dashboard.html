@@ -15,6 +15,8 @@
     <script src="../../templates/sideNavBar.js"></script>
     <script src="../../js/auth.js"></script>
     <script src="../../templates/loader.js"></script>
+    <script src="/js/data/apiURLs.js"></script>
+
 
     <title>Document</title>
   </head>
@@ -68,12 +70,17 @@
                 <div class="idcard__data">
                   <!-- <span class="idcard__data--icon"></span> -->
                   <p class="idcard__data--content" id="likesTag">data</p>
-                  <p class="idcard__data--heading">likes</p>
+                  <p class="idcard__data--heading">followers</p>
                 </div>
                 <div class="idcard__data">
                   <!-- <span class="idcard__data--icon"></span> -->
                   <p class="idcard__data--content" id="commentsTag">data</p>
                   <p class="idcard__data--heading">comments</p>
+                </div>
+                <div class="idcard__data">
+                  <!-- <span class="idcard__data--icon"></span> -->
+                  <p class="idcard__data--content" id="followingTag">data</p>
+                  <p class="idcard__data--heading">following</p>
                 </div>
                 <div class="idcard__data">
                   <!-- <span class="idcard__data--icon"></span> -->
@@ -97,12 +104,13 @@
                 <img
                   src="https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png"
                   alt="profile"
+                  id="profileImageTag"
                 />
               </div>
               <!-- name -->
-              <p class="idcard__name">name here</p>
+              <p class="idcard__name" id="backUsernameTag">name here</p>
               <!-- tier -->
-              <p class="idcard__tier">name here</p>
+              <p class="idcard__tier" id="backTierTag">name here</p>
 
               <!-- mutable data -->
               <div class="idcard__profile">
@@ -114,24 +122,63 @@
                 </div>
                 <div class="idcard__profile__lastname idcard__profile__field">
                   <!-- <span class="idcard__data--icon"></span> -->
-                  <p class="idcard__data--content" id="postTag">
+                  <p class="idcard__data--content" id="emailTag">
                     data@data.com
                   </p>
                   <p class="idcard__data--heading">email</p>
                 </div>
                 <div class="idcard__profile__field">
                   <!-- <span class="idcard__data--icon"></span> -->
-                  <p class="idcard__data--content" id="viewsTag">9874563215</p>
+                  <p class="idcard__data--content" id="phoneTag">9874563215</p>
                   <p class="idcard__data--heading">phone</p>
                 </div>
               </div>
             </div>
 
-            <div class="idcard__form--togglebtn" >
+            <div class="idcard__form--togglebtn">
               <button class="btn" onclick="showProfileForm()">edit</button>
             </div>
 
-            <div class="idcard__form" id="profileFormContainer"></div>
+            <form class="idcard__form" id="profileFormContainer">
+              <div class="idcard__image-container">
+                <img
+                  src="/assets/images/default_blog.png"
+                  alt="thumbnail"
+                  id="blogThumbnailImage"
+                  class=""
+                />
+                <input
+                  type="file"
+                  name="profileImage"
+                  id="profileImage"
+                  onchange="previewImage(event)"
+                  class="new-blog__thumbnail__input"
+                />
+                <span
+                  class="btn new-blog__thumbnail__btn"
+                  onclick="uploadImage()"
+                >
+                  U
+                </span>
+              </div>
+
+              <input
+                type="text"
+                name="profileFormName"
+                id="profileFormName"
+                class="textbox"
+                placeholder="name"
+              />
+              <input
+                type="text"
+                name="profileFormPhone"
+                id="profileFormPhone"
+                class="textbox"
+                placeholder="Contact"
+              />
+
+              <button type="submit">update</button>
+            </form>
           </div>
         </div>
       </div>
@@ -306,19 +353,39 @@
         const viewsTag = document.getElementById("viewsTag");
         const likesTag = document.getElementById("likesTag");
         const commentsTag = document.getElementById("commentsTag");
+        const followingTag = document.getElementById("followingTag");
         const joinedTag = document.getElementById("joinedTag");
+        const profileImageTag = document.getElementById("profileImageTag");
+
 
         const usernameTag = document.getElementById("usernameTag");
         const tiertag = document.getElementById("tierTag");
+
+        const backUsernameTag = document.getElementById("backUsernameTag");
+        const backTierTag = document.getElementById("backTierTag");
+
+        const nameTag = document.getElementById("nameTag");
+        const emailTag = document.getElementById("emailTag");
+        const phoneTag = document.getElementById("phoneTag");
 
         usernameTag.innerText = data.username;
         tiertag.innerText = data.user_tier;
         blogTag.innerText = data.total_blogs;
         postTag.innerText = data.total_posts;
         viewsTag.innerText = data.total_views;
-        likesTag.innerText = data.total_likes;
+        likesTag.innerText = data.total_followers;
         commentsTag.innerText = data.total_comments;
-        joinedTag.innerText = new Date(data.joining).toLocaleDateString();
+        followingTag.innerText = data.following.length
+        console.log(data.joining)
+        joinedTag.innerText = new Date(data.joining? data.joining : data.createdAt).toLocaleDateString();
+        profileImageTag.src = data.image_url
+
+        backUsernameTag.innerText = data.username
+        backTierTag.innerText = data.user_tier
+
+        nameTag.innerText = data.first_name + " " + data.last_name
+        emailTag.innerText = data.email
+        phoneTag.innerText = data.phone
         // new Date().toLocaleDateString
         return Promise.resolve();
       };
@@ -326,16 +393,81 @@
 
     <!-- red-f// Show Profile Edit Form -->
     <script>
+      const userdata = JSON.parse(localStorage.getItem("quillcraft_userdata"));
       const showProfileForm = () => {
-        const profileFormContainer = document.getElementById("profileFormContainer")
-        // profileFormContainer.style.inset = "0 0 0 0"
-        // profileFormContainer.style.bottom = "0"
-        // profileFormContainer.style.left = "0"
-        profileFormContainer.style.width = "100%"
-        // profileFormContainer.style.height = "100%"
-
-        // profileFormContainer.style.right = "0"
+        const profileFormContainer = document.getElementById(
+          "profileFormContainer"
+        );
+        profileFormContainer.style.width = "100%";
+        profileFormContainer.style.padding = "2rem";
       };
+
+      const profileForm = document.getElementById("profileFormContainer");
+      profileForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name = document
+          .getElementById("profileFormName")
+          .value.split(" ");
+        const phone = document.getElementById("profileFormPhone").value;
+        const profileImage = document.getElementById("profileImage")
+
+        // const profileData = {
+        //   first_name: ,
+        //   last_name: ,
+        //   phone: phone,
+        // };
+
+        const profileData = new FormData()
+        profileData.append("profile_image", profileImage.files[0])
+        profileData.append("first_name", name.slice(0, name.length - 1).join(" "))
+        profileData.append("last_name", name[name.length - 1])
+        profileData.append("phone", phone)
+        try {
+          const response = await fetch(accountBaseURL + userdata.username, {
+            method: "PUT",
+            // headers: { "Content-Type": "application/json" },
+            body: profileData,
+          });
+          const res = await response.json();
+
+          console.log(res);
+          if(!res.status){}
+
+          const profileFormContainer = document.getElementById(
+          "profileFormContainer"
+        );
+        profileFormContainer.style.width = "0%";
+        profileFormContainer.style.padding = "0rem";
+
+        
+          localStorage.setItem("quillcraft_userdata", JSON.stringify(res.data))
+        await setIDCard(res.data);
+        } catch (error) {
+          console.log(error);
+        }
+      });
+    
+    
+
+      const previewImage = (event) => {
+        const blogThumbnail = document.getElementById("blogThumbnailImage");
+        let input = event.target;
+        //  var image = document.getElementById('preview');
+        if (input.files && input.files[0]) {
+          let reader = new FileReader();
+          reader.onload = function (e) {
+            blogThumbnail.src = e.target.result;
+          };
+          reader.readAsDataURL(input.files[0]);
+        }
+      };
+
+      const uploadImage = ()=>{
+        // e.preventDefault()
+        const blogThumbnail = document.getElementById("profileImage")
+        blogThumbnail.click()
+      }
     </script>
   </body>
 </html>

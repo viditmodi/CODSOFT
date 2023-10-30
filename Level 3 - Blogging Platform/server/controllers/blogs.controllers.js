@@ -112,6 +112,44 @@ const getAllBlogsByUsername = async (req, res) => {
 };
 
 
+const followBlog = async (req, res)=>{
+    try {
+        const {username, blogID} = req.body;
+        const isExistingAccount = await AccountCollection.findOne({username});
+        if(!isExistingAccount){
+            return res.status(400).sned({status: false, message: "no account found"})
+        }
+        
+        const isExistingBlog = await BlogsCollection.findOne({blogID});
+        if(!isExistingBlog){
+            return res.status(400).sned({status: false, message: "no blog found"})
+        }
+        let likedBlogList = []
+        if(isExistingAccount.following){
+            likedBlogList = isExistingAccount.following
+        }
+
+        if(likedBlogList.includes(blogID)){
+            return res.status(200).send({status: true, message: "already followed"})
+        }
+
+        likedBlogList.push(blogID)
+        const updatedAccount = await AccountCollection.findOneAndUpdate({username}, {following:likedBlogList}, {new:true})
+
+        const authorData = await AccountCollection.findOne({username: isExistingBlog.author})
+        const updatedAuthor = await AccountCollection.findOneAndUpdate({username: authorData.username}, {total_followers: authorData.total_followers+1}, {new: true})
 
 
-module.exports = { createNewBlog, getAllBlogsByUsername };
+        res.status(200).send({status: true, message: "followed successfully", data: updatedAccount})
+
+        
+    } catch (error) {
+        console.log("Error in followBlog");
+    console.log(error);
+    res.send({ status: false, message: error });
+    }
+}
+
+
+
+module.exports = { createNewBlog, getAllBlogsByUsername, followBlog };

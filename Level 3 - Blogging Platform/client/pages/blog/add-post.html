@@ -16,36 +16,48 @@
   <body onload="onLoadHandler()">
     <header class="header" id="Header"></header>
 
-    <section id="blogSelector">
-      <select name="blogDropdown" id="blogDropdown"></select>
-      <button onclick="setBlog()">select</button>
-    </section>
+    <form id="blogSelector" class="form wrapper">
+      <select
+        name="blogDropdown"
+        id="blogDropdown"
+        class="form__dropdown"
+      ></select>
+      <button type="submit" class="btn form__btn">select</button>
+    </form>
 
     <section class="add-post__container wrapper" id="newPost">
-      <form class="add-post__left add-post__form" id="postForm">
-        <div>
-            <img src="" alt="" id="postThumbnailImage">
-            <input type="file" name="postThumbnail" id="postThumbnail">
+      <form class="add-post__left add-post__form form" id="postForm">
+        <div class="add-post__thumbnail-container">
+          <img src="/assets/images/default_blog.png" alt="" id="postThumbnailImage" class="post__thumbnail"/>
+          <input type="file" name="postThumbnail" id="postThumbnail" />
         </div>
         <input
           type="text"
           name="postTitle"
           id="postTitle"
           placeholder="title"
+          class="form__textbox"
         />
-
-        <textarea name="postDesc" id="postDesc" cols="30" rows="10" placeholder="desc"></textarea>
+        
+        <textarea
+        name="postDesc"
+        id="postDesc"
+          cols="30"
+          rows="10"
+          placeholder="desc"
+          class="form__textbox"
+        ></textarea>
       </form>
 
       <div class="add-post__tools">
-        <button onclick="createNewImage()">image</button>
-        <button onclick="createNewText()">text</button>
-        <button onclick="createNewHeading()">heading</button>
+        <button class="add-post__tools__btn btn" onclick="createNewImage()">image</button>
+        <button class="add-post__tools__btn btn" onclick="createNewText()">text</button>
+        <button class="add-post__tools__btn btn" onclick="createNewHeading()">heading</button>
       </div>
       <!-- <div class="add-post__left add-post__settings">
             settings
         </div> -->
-      <button onclick="createPost()">create</button>
+      <button onclick="createPost()" class="btn btn__push btn__push--focus add-post__btn">create</button>
     </section>
 
     <!-- yellow-f// JS -->
@@ -104,11 +116,16 @@
 
         const newPost = document.getElementById("newPost");
         const blogSelector = document.getElementById("blogSelector");
+
+        blogSelector.addEventListener("submit", (e) => {
+          e.preventDefault();
+          setBlog();
+        });
         if (!blogID) {
           newPost.style.display = "none";
           blogSelector.style.display = "flex";
         } else {
-          newPost.style.display = "block";
+          newPost.style.display = "flex";
           blogSelector.style.display = "none";
         }
 
@@ -124,30 +141,33 @@
         const postForm = document.getElementById("postForm");
 
         const headingContainer = document.createElement("div");
+        headingContainer.classList.add("add-post__heading-container")
 
-        const headingForm = document.createElement("div");
-        const headingPreview = document.createElement("div");
-
+        // const headingForm = document.createElement("div");
+        // const headingPreview = document.createElement("div");
+        
         const headingTextBox = document.createElement("input");
         headingTextBox.type = "text";
         headingTextBox.placeholder = "heading";
         headingTextBox.classList.add(
           "add-post__heading-input",
-          "add-post__input"
+          "add-post__input",
+          "form__textbox"
         );
         headingTextBox.setAttribute("data-type", "heading");
-
-        headingForm.appendChild(headingTextBox);
+        
         const headingTag = document.createElement("h2");
         headingTag.innerText = "Heading preview";
-
-        headingPreview.appendChild(headingTag);
+        headingTag.classList.add("heading", "heading--5", "add-post__heading-preview")
+        
+        headingContainer.appendChild(headingTag);
+        headingContainer.appendChild(headingTextBox);
         headingTextBox.addEventListener("change", (e) => {
           headingTag.innerText = e.target.value;
         });
 
-        headingContainer.appendChild(headingPreview);
-        headingContainer.appendChild(headingForm);
+        // headingContainer.appendChild(headingPreview);
+        // headingContainer.appendChild(headingForm);
         // headingContainer.classList.add("heading heading--2")
         postForm.appendChild(headingContainer);
       };
@@ -159,28 +179,30 @@
         const postForm = document.getElementById("postForm");
 
         const textContainer = document.createElement("div");
+        textContainer.classList.add("add-post__text-container")
 
-        const textForm = document.createElement("div");
-        const textPreview = document.createElement("div");
+        // const textForm = document.createElement("div");
+        // const textPreview = document.createElement("div");
 
         const textTextBox = document.createElement("textarea");
         textTextBox.placeholder = "enter text";
 
-        textTextBox.classList.add("add-post__text-input", "add-post__input");
+        textTextBox.classList.add("add-post__text-input", "add-post__input", "form__textbox");
         textTextBox.setAttribute("data-type", "text");
 
-        textForm.appendChild(textTextBox);
+        // textContainer.appendChild(textTextBox);
 
         const textTag = document.createElement("p");
-        textTag.innerText = "text preview";
+        textTag.innerText = "Text preview";
+        textTag.classList.add("add-post__text-preview")
 
-        textPreview.appendChild(textTag);
+        // textPreview.appendChild(textTag);
         textTextBox.addEventListener("change", (e) => {
           textTag.innerText = e.target.value;
         });
 
-        textContainer.appendChild(textPreview);
-        textContainer.appendChild(textForm);
+        textContainer.appendChild(textTag);
+        textContainer.appendChild(textTextBox);
         // textContainer.classList.add("text text--2")
         postForm.appendChild(textContainer);
       };
@@ -194,6 +216,7 @@
 
         const imageForm = document.createElement("div");
         const imagePreview = document.createElement("div");
+        imagePreview.classList.add("add-post__image-preview")
 
         const imageInput = document.createElement("input");
         imageInput.type = "file";
@@ -204,7 +227,7 @@
         imageForm.appendChild(imageInput);
 
         const imageTag = document.createElement("img");
-        // imageTag.src = "image preview"
+        imageTag.src = "/assets/images/default_blog.png"
 
         imagePreview.appendChild(imageTag);
         imageInput.addEventListener("change", (e) => {
@@ -233,31 +256,22 @@
 
     <!-- red-f// Post Submit Handler-->
     <script>
-        const postThumbnail = document.getElementById("postThumbnail")
-        postThumbnail.addEventListener("change", (e)=>{
-            previewImage(e, document.getElementById("postThumbnailImage"))
-        })
+      const postThumbnail = document.getElementById("postThumbnail");
+      postThumbnail.addEventListener("change", (e) => {
+        previewImage(e, document.getElementById("postThumbnailImage"));
+      });
       const createPost = async () => {
         const data = [];
         const postData = new FormData();
         const postID = postIDGenerator();
 
-
-
-
         console.log(postThumbnail.files[0]);
-            const image = postThumbnail.files[0];
-            let blob = image.slice(0, image.size, image.type);
-            const newImageName = `${postID}_thumbnail.${image.type.split("/")[1]}`;
-            const newImage = new File(
-              [blob],
-              newImageName,
-              { type: image.type }
-            );
-            console.log(newImage);
-            postData.append("images", newImage);
-
-
+        const image = postThumbnail.files[0];
+        let blob = image.slice(0, image.size, image.type);
+        const newImageName = `${postID}_thumbnail.${image.type.split("/")[1]}`;
+        const newImage = new File([blob], newImageName, { type: image.type });
+        console.log(newImage);
+        postData.append("images", newImage);
 
         postData.append("thumbnail", newImageName);
         postData.append("postID", postID);
@@ -326,7 +340,10 @@
 
           console.log("res");
           console.log(res);
-          localStorage.setItem("quillcraft_userdata", JSON.stringify(res.userdata))
+          localStorage.setItem(
+            "quillcraft_userdata",
+            JSON.stringify(res.userdata)
+          );
         } catch (error) {
           console.log(error);
         }

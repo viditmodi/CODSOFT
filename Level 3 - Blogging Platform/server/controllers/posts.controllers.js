@@ -52,7 +52,7 @@ const getAllPostsByBlogID = async (req, res)=>{
             return res.status(200).send({status: false, message: "no posts found"})
         }
         
-        res.status(200).send({status: true, message: `${postsArray.length} posts found`, data: postsArray})
+        res.status(200).send({status: true, message: `${postsArray.length} posts found`, data: postsArray, blogData: isExistingBlog})
         // console.log(req.body)
         // console.log(req.files)
         // res.send("ok")

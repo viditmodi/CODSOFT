@@ -60,7 +60,23 @@ const createNewAccount = async (req, res) => {
       status: true,
       message: "Account Creation Success",
       authToken: token,
-      data: { first_name, last_name, username, email, phone },
+      data: {
+        first_name: addedAccount.first_name,
+        last_name: addedAccount.last_name,
+        username: addedAccount.username,
+        email: addedAccount.email,
+        phone: addedAccount.phone,
+        image_url: addedAccount.image_url,
+        user_tier: addedAccount.user_tier,
+        total_blogs: addedAccount.total_blogs,
+        total_posts: addedAccount.total_posts,
+        total_views: addedAccount.total_views,
+        total_followers: addedAccount.total_followers,
+        total_likes: addedAccount.total_likes,
+        total_comments: addedAccount.total_comments,
+        joining: addedAccount.createdAt,
+        following: addedAccount.following
+      },
     });
 
     // res.send(req.body);
@@ -132,8 +148,10 @@ const logInToAccount = async (req, res) => {
         total_posts: isExistingAccount.total_posts,
         total_views: isExistingAccount.total_views,
         total_likes: isExistingAccount.total_likes,
+        total_followers: isExistingAccount.total_followers,
         total_comments: isExistingAccount.total_comments,
         joining: isExistingAccount.createdAt,
+        following: isExistingAccount.following
       },
     });
 
@@ -209,14 +227,12 @@ const updateAccountData = async (req, res) => {
   }
 
   const {first_name, last_name, phone} = req.body
+  const profileImage = req.file
 
-  const updatedAccount = await AccountCollection.findOneAndUpdate({username}, {first_name, last_name, phone}, {new: true})
+  const updatedAccount = await AccountCollection.findOneAndUpdate({username}, {image_url: process.env.URL + profileImage.path, first_name, last_name, phone}, {new: true})
 
   res.status(200).send({status: true, message: "Account updated successfully", data: updatedAccount})
-  console.log("object");
-  res
-    .status(200)
-    .send({ status: true, message: "Authorized Access", data: username });
+  // console.log("object");
 };
 
 

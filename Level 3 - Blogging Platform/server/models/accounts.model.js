@@ -9,7 +9,7 @@ const accountSchema = mongoose.Schema(
     user_tier: {
       type: String,
       trim: true,
-      default: "newbie"
+      default: "newbie",
     },
     first_name: {
       type: String,
@@ -35,28 +35,37 @@ const accountSchema = mongoose.Schema(
     password: {
       type: String,
     },
+    // liked_blogs: [
+    //   {
+    //     type: String,
+    //   },
+    // ],
+    total_followers: {
+      type: Number,
+      default: 0,
+    },
     total_blogs: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0,
     },
     total_posts: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0,
     },
     total_views: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0,
     },
     total_likes: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0,
     },
     total_comments: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0,
     },
-    liked: [{type: String}],
-    following: [{type: String}],
+    liked: [{ type: String }],
+    following: [{ type: String }],
     tokens: [
       {
         token: { type: String },

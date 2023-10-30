@@ -155,8 +155,8 @@
         const data = {
           first_name: firstName.value,
           last_name: lastName.value,
-          username: username.value,
-          email: email.value,
+          username: username.value.toLowercase(),
+          email: email.value.toLowercase(),
           phone: phone.value,
           password: password.value,
           confirm_password: confirmPassword.value,

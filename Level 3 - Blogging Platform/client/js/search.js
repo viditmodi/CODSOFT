@@ -14,6 +14,9 @@ const searchBar = (data) => {
   }
   console.log(searchType, searchQuery);
 
+  searchType = searchType.toLowerCase()
+  searchQuery = searchQuery.toLowerCase()
+
   if(!["category", "blog", "author", "post"].includes(searchType)){
     return alert("invalid search param")
   }

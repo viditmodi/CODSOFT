@@ -16,6 +16,7 @@
     <script src="../../templates/footer.template.js"></script>
     <script src="../../templates/loader.js"></script>
     <script src="../../templates/sideNavBar.js"></script>
+    <script src="../../templates/defaultText.js"></script>
 
     <script src="../../js/auth.js"></script>
     <script src="../../js/generators.js"></script>
@@ -28,7 +29,12 @@
 
     <section class="blog grid-container">
       <section class="new-blog grid-container__left" id="newBlog">
-        <form action="" class="new-blog__form" id="blogForm" enctype="multipart/form-data">
+        <form
+          action=""
+          class="form new-blog__form"
+          id="blogForm"
+          enctype="multipart/form-data"
+        >
           <div class="new-blog__thumbnail-container">
             <img
               src="/assets/images/default_blog.png"
@@ -43,29 +49,48 @@
               onchange="previewImage(event)"
               class="new-blog__thumbnail__input"
             />
-            <div class="btn new-blog__thumbnail__btn" onclick="uploadImage()">U</div>
+            <div class="btn new-blog__thumbnail__btn" onclick="uploadImage()">
+              <span class="material-symbols-outlined"> upload </span>
+            </div>
           </div>
 
-          <input type="text" name="blogTitle" id="blogTitle" placeholder="blog title">
+          <input
+            type="text"
+            name="blogTitle"
+            id="blogTitle"
+            placeholder="blog title"
+            class="form__textbox"
+          />
           <!-- <input type="text" name="blogDesc" id="blogDesc" > -->
 
-          <textarea name="blogDesc" id="blogDesc" cols="30" rows="10" placeholder="blog description"></textarea>
+          <textarea
+            name="blogDesc"
+            id="blogDesc"
+            cols="30"
+            rows="10"
+            placeholder="blog description"
+            class="form__textbox"
+          ></textarea>
 
-          <select name="blogCategory" id="blogCategory">
-            <option value="food" >food</option>
+          <select name="blogCategory" id="blogCategory" class="form__dropdown">
+            <option value="food" class="form__dropdown__option">food</option>
+            <option value="fashion" class="form__dropdown__option">
+              fashion
+            </option>
           </select>
 
-          <button type="submit" >create</button>
+          <button type="submit" class="btn form__btn">create</button>
         </form>
       </section>
 
-      <section class="wrapper" id="galleryContainer"></section>
-
+      <section class="grid-container__right">
+        <section class="wrapper" id="container"></section>
+        <section class="wrapper" id="galleryContainer"></section>
+      </section>
       <!-- <button class="btn btn__push btn__push--focus blogs__btn" onclick="showNewBlog()">New</button> -->
     </section>
 
     <footer id="Footer"></footer>
-
 
     <!-- red-f// DATA -->
     <!-- <script>
@@ -159,34 +184,54 @@
       const body = document.getElementsByTagName("body")[0];
       createLoader();
       const onLoadHandler = async () => {
-        const userdata = JSON.parse(localStorage.getItem("quillcraft_userdata"))
+        const userdata = JSON.parse(
+          localStorage.getItem("quillcraft_userdata")
+        );
         if (!checkLoginStatus()) {
           window.location.href = "/pages/auth/login.html";
         }
         await createHeader(header, loadData);
         await createSideNavBar(loadData.navBarData);
 
+        const container = document.getElementById("container");
         try {
-          const response = await fetch(allBlogURL + userdata.username)
-          const res = await response.json()
-          
-          createGallery(document.getElementById("galleryContainer"), "blog", "Your Blogs", res.data)
+          const response = await fetch(allBlogURL + userdata.username);
+          const res = await response.json();
+          // console.log(res.data)
+          if (!res.data) {
+            createDefaultText(container, "create a blog now and start posting")
+            localStorage.setItem(
+            "quillcraft_userbloglist",
+            JSON.stringify([])
+          );
+          } else {
+            container.style.display = "none";
+
+            createGallery(
+              document.getElementById("galleryContainer"),
+              "blog",
+              "Your Blogs",
+              res.data
+            );
+            localStorage.setItem(
+            "quillcraft_userbloglist",
+            JSON.stringify(res.data)
+          );
+          }
           // res.data.forEach((blogData) => {
           //   createBlogCard(blogGallery, blogData);
           // });
-          console.log(res)
-          localStorage.setItem('quillcraft_userbloglist', JSON.stringify(res.data))
+          console.log(res);
+          
         } catch (error) {
-          console.log(error)
+          console.log(error);
         }
-
 
         await createFooter();
 
         removeLoader();
       };
     </script>
-
 
     <!-- red-f// Blog Form Submit -->
     <script>
@@ -212,30 +257,32 @@
         }
       };
 
-      const uploadImage = ()=>{
+      const uploadImage = () => {
         // e.preventDefault()
-        const blogThumbnail = document.getElementById("blogThumbnail")
-        blogThumbnail.click()
-      }
-    
+        const blogThumbnail = document.getElementById("blogThumbnail");
+        blogThumbnail.click();
+      };
 
-      const blogForm = document.getElementById("blogForm")
-      blogForm.addEventListener("submit", async (e)=>{
-        e.preventDefault()
+      const blogForm = document.getElementById("blogForm");
+      blogForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-        const blogThumbnail = document.getElementById("blogThumbnail")
-        const blogTitle = document.getElementById("blogTitle")
-        const blogDesc = document.getElementById("blogDesc")
-        const blogCategory = document.getElementById("blogCategory")
+        const blogThumbnail = document.getElementById("blogThumbnail");
+        const blogTitle = document.getElementById("blogTitle");
+        const blogDesc = document.getElementById("blogDesc");
+        const blogCategory = document.getElementById("blogCategory");
 
-        const blogID = blogIDGenerator()
-        const blogData = new FormData()
-        blogData.append("thumbnail", blogThumbnail.files[0])
-        blogData.append("title", blogTitle.value)
-        blogData.append("desc", blogDesc.value)
-        blogData.append("category", blogCategory.value)
-        blogData.append("blogID", blogID)
-        blogData.append("author", JSON.parse(localStorage.getItem("quillcraft_userdata")).username)
+        const blogID = blogIDGenerator();
+        const blogData = new FormData();
+        blogData.append("thumbnail", blogThumbnail.files[0]);
+        blogData.append("title", blogTitle.value.toLowerCase());
+        blogData.append("desc", blogDesc.value);
+        blogData.append("category", blogCategory.value);
+        blogData.append("blogID", blogID);
+        blogData.append(
+          "author",
+          JSON.parse(localStorage.getItem("quillcraft_userdata")).username
+        );
 
         // const blogData = {
         //   thumbnail: blogThumbnail.files[0],
@@ -245,32 +292,43 @@
         //   blogID: blogIDGenerator()
         // }
 
-        console.log(JSON.stringify(blogData))
+        console.log(JSON.stringify(blogData));
         // console.log(blogBaseURL)
 
         try {
           const response = await fetch(blogBaseURL + `?blogID=${blogID}`, {
             method: "POST",
             // headers: {"Content-Type": "application/json"},
-            body: blogData
-          })
-          const res = await response.json()
+            body: blogData,
+          });
+          const res = await response.json();
 
-          createBlogCard(document.getElementsByClassName("blog-gallery__grid")[0], res.data);
-          const blogList = JSON.parse(localStorage.getItem('quillcraft_userbloglist'))
-          blogList.push(res.data)
-          localStorage.setItem('quillcraft_userbloglist', JSON.stringify(blogList))
-          blogForm.reset()
-          const blogThumbnailImage = document.getElementById("blogThumbnailImage");
-          blogThumbnailImage.src = "/assets/images/default_blog.png"
-          localStorage.setItem("quillcraft_userdata", JSON.stringify(res.userdata))
+          createBlogCard(
+            document.getElementsByClassName("blog-gallery__grid")[0],
+            res.data
+          );
+          const blogList = JSON.parse(
+            localStorage.getItem("quillcraft_userbloglist")
+          );
+          blogList.push(res.data);
+          localStorage.setItem(
+            "quillcraft_userbloglist",
+            JSON.stringify(blogList)
+          );
+          blogForm.reset();
+          const blogThumbnailImage =
+            document.getElementById("blogThumbnailImage");
+          blogThumbnailImage.src = "/assets/images/default_blog.png";
+          localStorage.setItem(
+            "quillcraft_userdata",
+            JSON.stringify(res.userdata)
+          );
 
-          console.log(res)
+          console.log(res);
         } catch (error) {
-          console.log(error)
+          console.log(error);
         }
-      })
-      
+      });
     </script>
   </body>
 </html>

@@ -14,6 +14,20 @@ var blogThumbnailUploader = multer({
 });
 
 
+var profileImageUploader = multer({
+  storage: multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./uploads/profiles");
+    },
+    filename: function (req, file, cb) {
+      //   cb(null, file.originalname)
+      console.log(req.params)
+      cb(null, req.params.username + "_profile." + file.mimetype.split("/")[1]);
+    },
+  }),
+});
+
+
 // var postThumbnailUploader = multer({
 //   storage: multer.diskStorage({
 //     destination: function (req, file, cb) {
@@ -40,4 +54,4 @@ var postImagesUploader = multer({
   }),
 });
 
-module.exports = { blogThumbnailUploader, postImagesUploader };
+module.exports = { blogThumbnailUploader, postImagesUploader, profileImageUploader };

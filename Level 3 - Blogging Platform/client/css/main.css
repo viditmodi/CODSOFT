@@ -6,6 +6,7 @@
 @import "./base/button.css";
 @import "./base/reset.css";
 @import "./base/textbox.css";
+@import "./base/form.css";
 
 @import "./vendors/fonts.css";
 
@@ -23,11 +24,14 @@
 @import "./components/loader.css";
 @import "./components/id_card.css";
 @import "./components/post_card.css";
+@import "./components/default_text.css";
 
 
 @import "./pages/login_page.css";
 @import "./pages/dashboard.css";
 @import "./pages/blogs.css";
+@import "./pages/posts.css";
+@import "./pages/add-post.css";
 
 
 

@@ -14,6 +14,7 @@
     <script src="../../templates/loader.js"></script>
     <script src="../../templates/sideNavBar.js"></script>
     <script src="../../templates/gallery.js"></script>
+    <script src="../../templates/defaultText.js"></script>
     <script src="../../js/auth.js"></script>
     <script src="/js/data/apiURLs.js"></script>
 
@@ -22,23 +23,49 @@
   <body onload="onLoadHandler()">
     <header class="header" id="Header"></header>
 
-    <section id="blogSelector">
-      <select name="blogDropdown" id="blogDropdown"></select>
-      <button onclick="setBlog()">select</button>
-    </section>
+    <form id="blogSelector" class="form wrapper">
+      <select
+        name="blogDropdown"
+        id="blogDropdown"
+        class="form__dropdown"
+      ></select>
+      <button type="submit" class="btn form__btn">select</button>
+    </form>
 
     <section class="posts-view" id="posts">
-      <div class="posts-view__blog-meta-group wrapper">
+      <div
+        class="posts-view__blog-meta-group wrapper"
+        id="blogMetaDataContainer"
+      >
         <!-- bg will be the thumbnail -->
         <div class="posts-view__blog-meta">
-          <button>like</button>
-          <button>follow</button>
+          <h2 id="blogTitle" class="heading heading--5"></h2>
+          <div class="posts-view__blog-meta__btn-group">
+          <!-- <button class="posts-view__blog-meta__btn btn btn__push btn__push--focus">
+            <span class="material-symbols-outlined"> thumb_up </span>
+          </button> -->
+          <button class="posts-view__blog-meta__btn btn btn__push btn__push--focus" onclick="followBlog()" id="followButton">
+            <span class="material-symbols-outlined" > favorite </span>
+          </button>
         </div>
+        </div>
+        <img
+          src="/assets/images/default_blog.png"
+          alt="blog thumbnail"
+          class="posts-view__blog-thumbnail"
+          id="blogThumbnail"
+        />
+        
       </div>
+
+      <section class="wrapper" id="container"></section>
+
       <section class="wrapper" id="galleryContainer"></section>
     </section>
 
-    <button id="newPostButton">New Post</button>
+    <button id="newPostButton" class="btn btn__push btn__push--focus">
+      <span class="material-symbols-outlined"> add </span>
+    </button>
 
     <script>
       const loadData = {
@@ -65,28 +92,29 @@
       };
       const header = document.getElementById("Header");
       const body = document.getElementsByTagName("body")[0];
-      createLoader()
-
+      createLoader();
 
       const params = new URLSearchParams(window.location.search);
       const blogID = params.get("blogid");
 
-      const newPostButton = document.getElementById("newPostButton")
-      newPostButton.addEventListener("click", ()=>{
-        if(blogID){
-          window.location.href = "/pages/blog/add-post.html?blogid="+blogID
+      const newPostButton = document.getElementById("newPostButton");
+      newPostButton.addEventListener("click", () => {
+        if (blogID) {
+          window.location.href = "/pages/blog/add-post.html?blogid=" + blogID;
+        } else {
+          window.location.href = "/pages/blog/add-post.html";
         }
-        else{
-          window.location.href = "/pages/blog/add-post.html"
-        }
-      })
+      });
 
+      const blogMetaDataContainer = document.getElementById(
+        "blogMetaDataContainer"
+      );
 
       const onLoadHandler = async () => {
         if (!checkLoginStatus()) {
           window.location.href = "/pages/auth/login.html";
         }
-        createHeader(header, loadData)
+        createHeader(header, loadData);
         createSideNavBar(loadData.navBarData);
 
         const blogList = JSON.parse(
@@ -108,37 +136,104 @@
 
         const newPost = document.getElementById("posts");
         const blogSelector = document.getElementById("blogSelector");
+
+        blogSelector.addEventListener("submit", (e) => {
+          e.preventDefault();
+          setBlog();
+        });
+
         if (!blogID) {
           newPost.style.display = "none";
           blogSelector.style.display = "flex";
         } else {
           newPost.style.display = "block";
           blogSelector.style.display = "none";
+
+          const response = await fetch(allPostURL + `?blogID=${blogID}`);
+          const res = await response.json();
+
+          console.log(res);
+          const container = document.getElementById("container");
+
+          const blogThumbnail = document.getElementById("blogThumbnail");
+          blogThumbnail.src = res.blogData.thumbnail;
+          const blogTitle = document.getElementById("blogTitle");
+          blogTitle.innerText = res.blogData.title;
+
+
+          const userdata = JSON.parse(localStorage.getItem("quillcraft_userdata"))
+          const followButton = document.getElementById("followButton")
+          console.log(userdata.username===res.blogData.author)
+          if(userdata.username===res.blogData.author){
+            followButton.disabled = true
+            followButton.style.display = "none"
+          }
+          if(userdata.following.includes(blogID)){
+            followButton.disabled = true
+            followButton.style.display = "none"
+          }
+
           
-          const response = await fetch(allPostURL + `?blogID=${blogID}`)
-          const res = await response.json()
-  
-          console.log(res.data)
-  
-          createGallery(document.getElementById("galleryContainer"), "posts", "Blog List", res.data)
+          // console.log(
+          //   res.blogData.thumbnail,
+          //   `url("${res.blogData.thumbnail}")`
+          // );
+          if (res.data.length < 1) {
+            createDefaultText(
+              container,
+              "Do not keep an empty blog. write now."
+            );
+            // localStorage.setItem(
+            // "quillcraft_userbloglist",
+            // JSON.stringify([])
+            // );
+          } else {
+            container.style.display = "none";
+
+            createGallery(
+              document.getElementById("galleryContainer"),
+              "posts",
+              "Blog List",
+              res.data
+            );
+          }
         }
 
-
-
-
-
-
-
-
-        removeLoader()
+        removeLoader();
       };
-
 
       const setBlog = () => {
         const blogDropdown = document.getElementById("blogDropdown");
 
         window.location.href = `/pages/user/posts.html?blogid=${blogDropdown.value}`;
       };
+    </script>
+
+
+    <script>
+      const followBlog = async ()=>{
+        const userdata = JSON.parse(localStorage.getItem("quillcraft_userdata"))
+        const followBlogData = {
+          username:userdata.username,
+          blogID: blogID
+        }
+
+        try {
+          const response = await fetch(followBlogURL,{
+            method: "PUT",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(followBlogData)
+          })
+
+          const res = await response.json();
+console.log(res)
+          if(!res.status){return alert(res.message)}
+
+          
+        } catch (error) {
+          console.log(error)
+        }
+      }
     </script>
   </body>
 </html>

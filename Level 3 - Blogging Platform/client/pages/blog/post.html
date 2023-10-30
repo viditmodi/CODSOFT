@@ -14,6 +14,7 @@
     <script src="../../templates/loader.js"></script>
     <script src="../../templates/sideNavBar.js"></script>
     <script src="../../templates/post.js"></script>
+    <script src="../../templates/comments.js"></script>
     <script src="../../js/auth.js"></script>
     <script src="/js/data/apiURLs.js"></script>
 
@@ -23,10 +24,13 @@
     <header class="header" id="Header"></header>
 
     <main class="wrapper grid-container" style="max-width: max(70%, 90rem);">
-      <section class="grid-container__left" id="postNavigator"></section>
-      <section id="postContainer"></section>
+      <section class="grid-container__left post-navigator" id="postNavigator"></section>
+      <section id="postContainer" class="grid-container__right"></section>
     </main>
-    <section class="comments__container" id="commentsContainer">
+
+
+
+    <section class="comments__container wrapper" id="commentsContainer">
         <div class="comments__group" id="commentsGroup"></div>
         <form class="comments__form" id="commentsForm">
             <textarea name="commentText" id="commentText" cols="30" rows="10" class="comments__text" placeholder="text here"></textarea>
@@ -66,6 +70,9 @@
       const onLoadHandler = async () => {
         if (!checkLoginStatus()) {
           window.location.href = "/pages/auth/login.html";
+
+          const commentForm = document.getElementById("commentsForm")
+          commentForm.style.display = "none"
         }
         createHeader(header, loadData);
         createSideNavBar(loadData.navBarData);
@@ -89,6 +96,7 @@
           console.log("res");
           console.log(res);
         //   createPost(document.getElementById("postContainer"), res.data);
+        createCommentsSection(document.getElementById("commentsGroup"), res.data)
         } catch (error) {
           console.log(error);
         }
@@ -104,7 +112,9 @@
     commentForm.addEventListener("submit", async (e)=>{
         e.preventDefault();
         console.log("submit")
+        console.log(localStorage.getItem("quillcraft_userdata"))
         const userData = JSON.parse(localStorage.getItem("quillcraft_userdata"))
+        console.log(userData)
 
         const commentData = {
             text: document.getElementById("commentText").value,
@@ -121,6 +131,8 @@
         const res = await response.json()
 
         console.log(res)
+        if(!res.status){}
+        localStorage.setItem("quillcraft_userdata", JSON.stringify(res.accountData))
     })
 </script>
   </body>

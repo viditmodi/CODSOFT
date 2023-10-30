@@ -8,6 +8,7 @@ const {
   updateAccountData,
 } = require("../controllers/accounts.controllers");
 const { isValidUser } = require("../middlewares/auth.middleware");
+const { profileImageUploader } = require("../config/multer.config");
 
 const accountRouter = express.Router();
 
@@ -57,8 +58,9 @@ accountRouter.put("/logout", isValidUser, logOutOfAccount);
 accountRouter.get("/auth", isValidUser, authorizeAccount);
 
 accountRouter.put(
-  "/",
+  "/:username",
   // isValidUser,
+  profileImageUploader.single("profile_image"), 
   updateAccountData
 );
 
