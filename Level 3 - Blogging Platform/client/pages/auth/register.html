@@ -121,9 +121,9 @@
       // const body = document.getElementById("Header");
 
       createLoader();
-      const onLoadHandler = () => {
+      const onLoadHandler = async () => {
         console.log("register Page");
-        if (checkLoginStatus()) {
+        if (await checkLoginStatus()) {
           window.location.href = "/pages/user/dashboard.html";
         }
         createHeader(header, loadData);

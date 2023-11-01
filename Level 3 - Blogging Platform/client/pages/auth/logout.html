@@ -30,6 +30,10 @@
     <script>
       createLoader("Logging Out")
       const onLoadHandler = async () => {
+        if (!(await checkLoginStatus())) {
+          window.location.href = "/pages/auth/login.html";
+        }
+
         const res = await logoutUser()
         console.log(res)
 

@@ -47,7 +47,7 @@ const getAllPostsByBlogID = async (req, res)=>{
         }
 
         const postsArray = await PostsCollection.find({blogID})
-        console.log(blogID, postsArray)
+        // console.log(blogID, postsArray)
         if(!postsArray){
             return res.status(200).send({status: false, message: "no posts found"})
         }
@@ -78,6 +78,10 @@ const getPostByPostID = async (req, res)=>{
         const accountData = await AccountCollection.findOne({username: blogData.author})
 
         const updatedAccount = await AccountCollection.findOneAndUpdate({username: accountData.username}, {total_views: accountData.total_views+1}, {new:true})
+
+        const updatedBlog = await BlogsCollection.findOneAndUpdate({blogID: blogData.blogID}, {total_views: blogData.total_views+1}, {new: true})
+
+        const updatedPost = await PostsCollection.findOneAndUpdate({postID: isExistingPost.postID}, {total_views: isExistingPost.total_views+1}, {new: true})
 
 
         res.status(200).send({status: true, message: `post found`, data: isExistingPost})

@@ -1,5 +1,5 @@
-const baseURL = "http://localhost:3100"
-// const baseURL = "https://quillcraft-api.onrender.com"
+// const baseURL = "http://localhost:3100"
+const baseURL = "https://quillcraft-api.onrender.com"
 
 
 
@@ -10,6 +10,7 @@ const allPostURL = `${baseURL}/posts/all/`
 const blogBaseURL = `${baseURL}/blog/`
 const allBlogURL = `${baseURL}/blog/all/`
 const followBlogURL = `${baseURL}/blog/follow`
+const featuredBlogURL = `${baseURL}/blog/featured`
 
 
 

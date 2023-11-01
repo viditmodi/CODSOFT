@@ -9,6 +9,8 @@
     <script src="/templates/header.js"></script>
     <script src="/templates/sideNavBar.js"></script>
     <script src="/templates/loader.js"></script>
+    <script src="/js/auth.js"></script>
+
 
     <script src="/js/data/apiURLs.js"></script>
     <script src="/js/generators.js"></script>
@@ -94,6 +96,9 @@
       const header = document.getElementById("Header");
       createLoader();
       const onLoadHandler = async () => {
+        if (!(await checkLoginStatus())) {
+          window.location.href = "/pages/auth/login.html";
+        }
         await createHeader(header, loadData);
         createSideNavBar(loadData.navBarData);
 

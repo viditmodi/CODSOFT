@@ -40,7 +40,7 @@
         <!-- bg will be the thumbnail -->
         <div class="posts-view__blog-meta">
           <h2 id="blogTitle" class="heading heading--5"></h2>
-          <div class="posts-view__blog-meta__btn-group">
+          <div class="posts-view__blog-meta__btn-group" id="postsButtonGroup">
           <!-- <button class="posts-view__blog-meta__btn btn btn__push btn__push--focus">
             <span class="material-symbols-outlined"> thumb_up </span>
           </button> -->
@@ -111,8 +111,14 @@
       );
 
       const onLoadHandler = async () => {
-        if (!checkLoginStatus()) {
-          window.location.href = "/pages/auth/login.html";
+        let isLoggedIn = false;
+        if (checkLoginStatus()) {
+          isLoggedIn= true
+        }
+        if(!isLoggedIn){
+          document.getElementById("newPostButton").style.display = "none"
+          document.getElementById("postsButtonGroup").style.display = "none"
+
         }
         createHeader(header, loadData);
         createSideNavBar(loadData.navBarData);
@@ -160,24 +166,6 @@
           const blogTitle = document.getElementById("blogTitle");
           blogTitle.innerText = res.blogData.title;
 
-
-          const userdata = JSON.parse(localStorage.getItem("quillcraft_userdata"))
-          const followButton = document.getElementById("followButton")
-          console.log(userdata.username===res.blogData.author)
-          if(userdata.username===res.blogData.author){
-            followButton.disabled = true
-            followButton.style.display = "none"
-          }
-          if(userdata.following.includes(blogID)){
-            followButton.disabled = true
-            followButton.style.display = "none"
-          }
-
-          
-          // console.log(
-          //   res.blogData.thumbnail,
-          //   `url("${res.blogData.thumbnail}")`
-          // );
           if (res.data.length < 1) {
             createDefaultText(
               container,
@@ -197,6 +185,30 @@
               res.data
             );
           }
+
+
+          if(isLoggedIn){
+            const userdata = JSON.parse(localStorage.getItem("quillcraft_userdata"))
+          const followButton = document.getElementById("followButton")
+          console.log(userdata.username===res.blogData.author)
+          if(userdata.username===res.blogData.author){
+            followButton.disabled = true
+            followButton.style.display = "none"
+          }
+          if(userdata.following.includes(blogID)){
+            followButton.disabled = true
+            followButton.style.display = "none"
+          }
+          }
+
+          
+
+          
+          // console.log(
+          //   res.blogData.thumbnail,
+          //   `url("${res.blogData.thumbnail}")`
+          // );
+          
         }
 
         removeLoader();

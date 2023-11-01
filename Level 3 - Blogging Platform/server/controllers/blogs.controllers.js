@@ -151,5 +151,86 @@ const followBlog = async (req, res)=>{
 }
 
 
+const getAllFollowedBlogs = async (req, res)=>{
+    try {
+        const {username} = req.query;
+        const accountData = await AccountCollection.findOne({username})
+        if(!accountData){
+            return res.status(400).send({status: false, message: "no account found"})
+        }
 
-module.exports = { createNewBlog, getAllBlogsByUsername, followBlog };
+        let blogArray;
+        if(accountData.following && accountData.following.length>0){
+            blogArray = await BlogsCollection.find({blogID: { $in: accountData.following }})
+        }else{
+            blogArray = await BlogsCollection.find()
+            blogArray = blogArray.sort((a,b)=>b.total_views-a.total_likes).slice(0,9)
+        }
+
+        const newBlogArray = await Promise.all(blogArray.map(async (blog) => {
+            const authorData = await AccountCollection.findOne({username: blog.author})
+            return {
+              blogID: blog.blogID,
+              thumbnail: blog.thumbnail,
+              title: blog.title,
+              desc: blog.desc,
+              author: {
+                image:
+                  authorData.image_url,
+                name: authorData.username,
+              },
+              category: blog.category,
+              metadata: {
+                publishedDate: new Date(blog.createdAt),
+                likes: blog.total_likes,
+                views: blog.total_views,
+                comments: blog.total_comments,
+              },
+            };
+          }))
+        res.status(200).send({status: true, message: "followed blogs found", data: newBlogArray})
+    } catch (error) {
+        console.log("error in getAllFollowedBlogs")
+        console.log(error)
+    }
+}
+
+const getFeaturedBlogs = async (req, res)=>{
+    try {
+        
+
+        
+           const blogArray = await BlogsCollection.find()
+            blogArray = blogArray.sort((a,b)=>b.total_views-a.total_likes).slice(0,9)
+        
+
+        const newBlogArray = await Promise.all(blogArray.map(async (blog) => {
+            const authorData = await AccountCollection.findOne({username: blog.author})
+            return {
+              blogID: blog.blogID,
+              thumbnail: blog.thumbnail,
+              title: blog.title,
+              desc: blog.desc,
+              author: {
+                image:
+                  authorData.image_url,
+                name: authorData.username,
+              },
+              category: blog.category,
+              metadata: {
+                publishedDate: new Date(blog.createdAt),
+                likes: blog.total_likes,
+                views: blog.total_views,
+                comments: blog.total_comments,
+              },
+            };
+          }))
+        res.status(200).send({status: true, message: "featured blogs found", data: newBlogArray})
+    } catch (error) {
+        console.log("error in getAllFollowedBlogs")
+        console.log(error)
+    }
+}
+
+
+module.exports = { createNewBlog, getAllBlogsByUsername, followBlog, getAllFollowedBlogs, getFeaturedBlogs };

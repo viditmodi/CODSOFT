@@ -32,9 +32,9 @@
 
     <section class="comments__container wrapper" id="commentsContainer">
         <div class="comments__group" id="commentsGroup"></div>
-        <form class="comments__form" id="commentsForm">
-            <textarea name="commentText" id="commentText" cols="30" rows="10" class="comments__text" placeholder="text here"></textarea>
-            <button type="submit">submit</button>
+        <form class="comments__form form" id="commentsForm">
+            <textarea name="commentText" id="commentText" cols="30" rows="10" class="comments__text form__textbox" placeholder="leave a comment" ></textarea>
+            <button type="submit" class="btn form__btn">submit</button>
         </form>
     </section>
 
@@ -68,9 +68,12 @@
       const postID = params.get("postid");
 
       const onLoadHandler = async () => {
-        if (!checkLoginStatus()) {
-          window.location.href = "/pages/auth/login.html";
+        let isLoggedIn = false;
+        if (await checkLoginStatus()) {
+          isLoggedIn = true;
+        }
 
+        if(!isLoggedIn){
           const commentForm = document.getElementById("commentsForm")
           commentForm.style.display = "none"
         }

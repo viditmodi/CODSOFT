@@ -117,8 +117,10 @@
     transform: translateY(100%);
 } */
 .blog-gallery__grid__card__image {
+  width: 100%;
   height: 100%;
-  width: auto;
+  object-fit: cover;
+  object-position: center;
 }
 
 .blog-gallery__grid__card__content {
@@ -169,6 +171,9 @@
 
 .blog-gallery__grid__card__author__image {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .blog-gallery__grid__card__author__name {
