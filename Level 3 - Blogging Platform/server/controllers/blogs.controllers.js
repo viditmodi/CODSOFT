@@ -200,7 +200,7 @@ const getFeaturedBlogs = async (req, res)=>{
         
 
         
-           const blogArray = await BlogsCollection.find()
+           let blogArray = await BlogsCollection.find()
             blogArray = blogArray.sort((a,b)=>b.total_views-a.total_likes).slice(0,9)
         
 

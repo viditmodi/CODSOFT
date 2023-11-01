@@ -1,5 +1,4 @@
 const searchBar = (data) => {
-  //   console.log(data);
   if (/^\s*$/.test(data)) {
     return alert("enter a valid string");
   }
@@ -28,5 +27,4 @@ const searchBar = (data) => {
 
 
   window.location.href = `/pages/search.html?t=${searchType}&q=${searchQuery}`
-  
 };

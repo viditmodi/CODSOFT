@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="/css/main.css" />
     <script src="/templates/header.js"></script>
+    <script src="/templates/footer.template.js"></script>
     <script src="/templates/sideNavBar.js"></script>
     <script src="/templates/loader.js"></script>
     <script src="/js/auth.js"></script>
@@ -62,6 +63,8 @@
       <button onclick="createPost()" class="btn btn__push btn__push--focus add-post__btn">create</button>
     </section>
 
+
+    <footer class="footer" id="Footer"></footer>
     <!-- yellow-f// JS -->
 
     <!-- red-f// Data -->
@@ -134,6 +137,7 @@
           blogSelector.style.display = "none";
         }
 
+        createFooter()
         removeLoader();
       };
     </script>

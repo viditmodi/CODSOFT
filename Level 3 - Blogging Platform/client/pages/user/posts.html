@@ -11,6 +11,7 @@
     />
 
     <script src="../../templates/header.js"></script>
+    <script src="../../templates/footer.template.js"></script>
     <script src="../../templates/loader.js"></script>
     <script src="../../templates/sideNavBar.js"></script>
     <script src="../../templates/gallery.js"></script>
@@ -66,6 +67,8 @@
     <button id="newPostButton" class="btn btn__push btn__push--focus">
       <span class="material-symbols-outlined"> add </span>
     </button>
+
+    <footer class="footer" id="Footer"></footer>
 
     <script>
       const loadData = {
@@ -210,7 +213,7 @@
           // );
           
         }
-
+        createFooter()
         removeLoader();
       };
 

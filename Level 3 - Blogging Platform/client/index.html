@@ -12,6 +12,7 @@
     <script src="./templates/footer.template.js"></script>
     <script src="./templates/gallery.js"></script>
     <script src="./js/auth.js"></script>
+    <script src="/js/data/apiURLs.js"></script>
     <script src="./js/search.js"></script>
     <script src="./templates/loader.js"></script>
     <title>QuillCraft Website</title>
@@ -127,14 +128,31 @@
       ];
 
       createLoader()
-      const onLoadHandler = () => {
+      const onLoadHandler = async () => {
         if (checkLoginStatus()) {
           window.location.href = "/pages/user/dashboard.html";
         }
 
 
 
-        createGallery(document.getElementById("galleryContainer"), "blog", "Featured Blogs", blogsDataArray)
+        try {
+          const response = await fetch(featuredBlogURL)
+          const res = await response.json()
+
+          console.log(res)
+          createGallery(
+              document.getElementById("galleryContainer"),
+              "blog",
+              "Blogs For You",
+              res.data
+            );
+        } catch (error) {
+          console.log(error)
+        }
+
+
+
+        // createGallery(document.getElementById("galleryContainer"), "blog", "Featured Blogs", blogsDataArray)
 
         createFooter()
 

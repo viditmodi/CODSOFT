@@ -28,5 +28,10 @@
 
     .grid-container__left{
         position: relative;
+        height: fit-content;
+    }
+    .grid-container__right{
+        width: 100%;
+        min-height: fit-content;
     }
   }

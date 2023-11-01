@@ -12,6 +12,7 @@
     <script src="../../templates/header.js"></script>
     <script src="../../templates/loader.js"></script>
     <script src="../../templates/sideNavBar.js"></script>
+    <script src="../../templates/footer.template.js"></script>
 
     <script src="../../js/auth.js"></script>
     <script src="../../js/data/apiURLs.js"></script>
@@ -95,7 +96,7 @@
       </form>
     </main>
 
-    <footer class="footer">This is Footer</footer>
+    <footer class="footer" id="Footer"></footer>
 
     <!-- red-f// OnLoadHandler -->
     <script>
@@ -129,6 +130,9 @@
         createHeader(header, loadData);
         createSideNavBar(loadData.navBarData);
 
+
+        
+        createFooter()
         removeLoader();
       };
     </script>
@@ -155,8 +159,8 @@
         const data = {
           first_name: firstName.value,
           last_name: lastName.value,
-          username: username.value.toLowercase(),
-          email: email.value.toLowercase(),
+          username: username.value.toLowerCase(),
+          email: email.value.toLowerCase(),
           phone: phone.value,
           password: password.value,
           confirm_password: confirmPassword.value,

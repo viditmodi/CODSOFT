@@ -12,6 +12,7 @@
     <script src="../../templates/header.js"></script>
     <script src="../../templates/loader.js"></script>
     <script src="../../templates/sideNavBar.js"></script>
+    <script src="/templates/footer.template.js"></script>
 
     <script src="../../js/api_requests/account.requests.js"></script>
     <script src="../../js/auth.js"></script>
@@ -63,7 +64,7 @@
       </form>
     </main>
 
-    <footer class="footer">This is Footer</footer>
+    <footer class="footer" id="Footer"></footer>
 
     <!-- red-f// OnLoadHandler -->
     <script>
@@ -95,7 +96,7 @@
         await createHeader(header, loadData);
         await createSideNavBar(loadData.navBarData)
 
-
+        createFooter()
         removeLoader()
       };
     </script>

@@ -137,7 +137,9 @@
             </div>
 
             <div class="idcard__form--togglebtn">
-              <button class="btn" onclick="showProfileForm()">edit</button>
+              <button class="btn" onclick="showProfileForm()"><span class="material-symbols-outlined">
+                edit
+                </span></button>
             </div>
 
             <form class="idcard__form" id="profileFormContainer">
@@ -159,7 +161,7 @@
                   class="btn new-blog__thumbnail__btn"
                   onclick="uploadImage()"
                 >
-                  U
+                <span class="material-symbols-outlined"> upload </span>
                 </span>
               </div>
 
@@ -178,7 +180,7 @@
                 placeholder="Contact"
               />
 
-              <button type="submit">update</button>
+              <button type="submit" class="btn form__btn">update</button>
             </form>
           </div>
         </div>
@@ -247,6 +249,7 @@
         } catch (error) {
           console.log(error)
         }
+
         removeLoader();
       };
     </script>
