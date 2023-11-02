@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Add New Post | QuillCraft | The Workshop For The Wordsmiths</title>
 
     <link rel="stylesheet" href="/css/main.css" />
     <script src="/templates/header.js"></script>
@@ -69,7 +69,7 @@
 
     <!-- red-f// Data -->
     <script>
-      const loadData = {
+      let loadData = {
         logoURL: "../../assets/images/logo.png",
         navBarData: [
           {
@@ -96,11 +96,30 @@
       const params = new URLSearchParams(window.location.search);
       const blogID = params.get("blogid");
 
+
       const header = document.getElementById("Header");
       createLoader();
       const onLoadHandler = async () => {
         if (!(await checkLoginStatus())) {
           window.location.href = "/pages/auth/login.html";
+
+          loadData = {
+            logoURL: "../../assets/images/logo.png",
+            navBarData: [
+              {
+                link: "/",
+                text: "home",
+              },
+              {
+                link: "/pages/auth/login.html",
+                text: "login",
+              },
+              {
+                link: "/pages/auth/register.html",
+                text: "register",
+              },
+            ],
+          };
         }
         await createHeader(header, loadData);
         createSideNavBar(loadData.navBarData);

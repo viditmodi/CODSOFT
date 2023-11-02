@@ -19,7 +19,7 @@
     <script src="../../js/auth.js"></script>
     <script src="/js/data/apiURLs.js"></script>
 
-    <title>Document</title>
+    <title>View Post | QuillCraft | The Workshop For The Wordsmiths</title>
   </head>
   <body onload="onLoadHandler()">
     <header class="header" id="Header"></header>
@@ -41,7 +41,7 @@
 
     <footer class="footer" id="Footer"></footer>
     <script>
-      const loadData = {
+      let loadData = {
         logoURL: "../../assets/images/logo.png",
         navBarData: [
           {
@@ -78,6 +78,24 @@
         if(!isLoggedIn){
           const commentForm = document.getElementById("commentsForm")
           commentForm.style.display = "none"
+
+          loadData = {
+            logoURL: "../../assets/images/logo.png",
+            navBarData: [
+              {
+                link: "/",
+                text: "home",
+              },
+              {
+                link: "/pages/auth/login.html",
+                text: "login",
+              },
+              {
+                link: "/pages/auth/register.html",
+                text: "register",
+              },
+            ],
+          };
         }
         createHeader(header, loadData);
         createSideNavBar(loadData.navBarData);

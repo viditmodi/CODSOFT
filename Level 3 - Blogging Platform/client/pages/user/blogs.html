@@ -22,7 +22,7 @@
     <script src="../../js/generators.js"></script>
     <script src="../../js/data/apiURLs.js"></script>
 
-    <title>Document</title>
+    <title>View Blog | QuillCraft | The Workshop For The Wordsmiths</title>
   </head>
   <body onload="onLoadHandler()">
     <header class="header" id="Header"></header>
@@ -73,10 +73,7 @@
           ></textarea>
 
           <select name="blogCategory" id="blogCategory" class="form__dropdown">
-            <option value="food" class="form__dropdown__option">food</option>
-            <option value="fashion" class="form__dropdown__option">
-              fashion
-            </option>
+            <option class="form__dropdown__option">Choose Category</option>
           </select>
 
           <button type="submit" class="btn form__btn">create</button>
@@ -158,7 +155,7 @@
     <!-- red-f// On Load Handler -->
     <script>
       // Header Data
-      const loadData = {
+      let loadData = {
         logoURL: "../../assets/images/logo.png",
         navBarData: [
           {
@@ -189,9 +186,37 @@
         );
         if (!checkLoginStatus()) {
           window.location.href = "/pages/auth/login.html";
+
+          loadData = {
+            logoURL: "../../assets/images/logo.png",
+            navBarData: [
+              {
+                link: "/",
+                text: "home",
+              },
+              {
+                link: "/pages/auth/login.html",
+                text: "login",
+              },
+              {
+                link: "/pages/auth/register.html",
+                text: "register",
+              },
+            ],
+          };
         }
         await createHeader(header, loadData);
         await createSideNavBar(loadData.navBarData);
+
+        const blogCategory = document.getElementById("blogCategory");
+        Object.keys(categoryColors).forEach(element => {
+          const option = document.createElement("option")
+          option.classList.add("form__dropdown__option")
+          option.textContent = element.toLowerCase()
+          option.value = element.toLowerCase()
+
+          blogCategory.append(option)
+        });
 
         const container = document.getElementById("container");
         try {
