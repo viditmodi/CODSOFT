@@ -1,0 +1,96 @@
+.landing {
+  width: 100%;
+  height: 100dvh;
+  background-color: aqua;
+  $alpha: 0.7;
+  background-image: linear-gradient(
+      to bottom right,
+      rgba($color-main-dark, $alpha),
+      transparent,
+      rgba($color-main, $alpha)
+    ),
+    url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1472&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+// overflow: hidden;
+    &__logo-container{
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        width: 30%;
+        aspect-ratio: 1;
+        max-width: 7rem;
+    }
+
+    &__logo{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        filter: drop-shadow(0px 0px 1px rgb(255, 255, 255));
+    }
+
+    &__title{
+        $fs: 7.5rem;
+        font-size: $fs;
+        line-height: $fs;
+        letter-spacing: 2px;
+        font-weight: 500;
+        font-family: $font-title;
+        margin: 0.5rem 0rem;
+        
+        @include mobile{
+            $fs: 6rem;
+            font-size: $fs;
+            line-height: $fs;
+        }
+    }
+
+    &__tagline{
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+        word-spacing: 4px;
+        opacity: 0.6;
+    }
+
+    &__btn-group{
+        width: 100%;
+        max-width: 35rem;
+        // background-color: aliceblue;
+        margin: 2rem 0rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    &__btn{
+        width: 50%;
+        
+        // &::after{
+        //     content: " ";
+        //     position: absolute;
+        //     top: 50%;
+        //     left: 50%;
+        //     transform: translate(-50%, -50%) scale(1);
+        //     width: calc(100% + 2rem);
+        //     height: calc(100% + 2rem);
+        //     // background-color: rgba(240, 248, 255, 0.295);
+        //     z-index: -1;
+        //     transition: 0.3s linear;
+        // }
+
+        
+        
+    }
+
+}

@@ -1,0 +1,9 @@
+.textbox{
+    border: none;
+    outline: transparent;
+
+
+    &::placeholder{
+        text-transform: capitalize;
+    }
+}

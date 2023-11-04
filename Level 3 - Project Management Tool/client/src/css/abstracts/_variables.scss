@@ -1,5 +1,20 @@
+$color-main:#4169e1; 
+$color-main-dark: darken($color-main, 20); 
+$color-main-light: lighten($color-main, 20); 
 
 
+// $color-accent:#98ff98; 
+$color-accent:#ff6b6b; 
+$color-accent-dark: darken($color-accent, 20); 
+$color-accent-light: lighten($color-accent, 20); 
+
+
+$font-heading: 'Oswald', sans-serif;
+$font-heading: 'Roboto Condensed', sans-serif;
+$font-text: 'Playfair Display', serif;
+$font-text: 'Poppins', sans-serif;
+$font-base: 'Roboto', sans-serif;
+$font-title: 'Tektur', sans-serif;
 
 
 // Breakpoints for different screen sizes used in responsive.scss
@@ -8,7 +23,11 @@
 // Tabs --- 769px - 1024px
 // Desktop --- 1025px - 1920px
 // Large Screens --- Default CSS styles
-$breakpoint-mobile-small: 360px;
-$breakpoint-mobile: 768px;
-$breakpoint-tab: 1024px;
+// $breakpoint-mobile-small: 360px;
+$breakpoint-mobile: 450px;
+$breakpoint-tab: 768px;
 $breakpoint-desktop: 1920px;
+// $breakpoint-mobile-small: 360px;
+// $breakpoint-mobile: 768px;
+// $breakpoint-tab: 1024px;
+// $breakpoint-desktop: 1920px;

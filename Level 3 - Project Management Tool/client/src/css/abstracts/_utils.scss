@@ -7,10 +7,10 @@
     padding: 2%;
     
     
-    @include mobile-small{
-        // background-color: rgb(255, 0, 0);
-        padding: 4%;
-    }
+    // @include mobile-small{
+    //     // background-color: rgb(255, 0, 0);
+    //     padding: 4%;
+    // }
     @include mobile{
         // background-color: rgb(94, 255, 0);
         padding: 4%;

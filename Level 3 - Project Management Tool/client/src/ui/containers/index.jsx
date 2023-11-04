@@ -1,1 +1,1 @@
-// export {default as } from ""
+export {default as AuthFormContainer} from "./AuthFormContainer/AuthFormContainer"
