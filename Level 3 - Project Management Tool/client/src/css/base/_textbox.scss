@@ -1,9 +1,24 @@
-.textbox{
-    border: none;
-    outline: transparent;
+.textbox {
+  border: none;
+  outline: transparent;
+  resize:none;
 
+  &::placeholder {
+    text-transform: capitalize;
+  }
+}
 
-    &::placeholder{
-        text-transform: capitalize;
-    }
+.neuro-textbox {
+  padding: 1rem 1.5rem;
+  box-shadow: 5px 5px 10px hsl(0, 0%, 95%), -3px -3px 8px rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
+  background-color: hsl(0, 0%, 80%);
+  border: 2px solid hsl(0, 0%, 80%);
+  transition: 0.2s ease-in-out;
+  color: rgb(24, 24, 24);
+  
+  &:focus, &:not(:placeholder-shown) {
+      box-shadow: 5px 5px 10px hsl(0, 0%, 95%), -3px -3px 8px rgba(0, 0, 0, 0.5),
+      inset 4px 4px 8px hsl(0, 0%, 95%),inset -3px -3px 6px rgba(0, 0, 0, 0.5);
+  }
 }

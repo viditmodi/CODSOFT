@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import { AuthTextBox, PushButton } from "../../base_components";
-import { NavLink } from "react-router-dom";
+import { Loader } from "../../components";
+import { NavLink, useNavigate } from "react-router-dom";
+import URLs from "../../../js/apiURLs";
+import {
+  isEmail,
+  isEmpty,
+  isNumber,
+  isStrongPassword,
+} from "../../../js/validators";
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -11,8 +20,26 @@ const RegisterForm = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleRegisterSubmit = (e) => {
+  const [isLoading, setIsloading] = useState(false);
+
+  const handleRegisterSubmit = async (e) => {
+    setIsloading(true);
     e.preventDefault();
+
+    if (
+      isEmpty(firstName) ||
+      isEmpty(lastName) ||
+      !isEmail(email) ||
+      !isNumber(phone) ||
+      phone.length !== 10 ||
+      isEmpty(username) ||
+      !isStrongPassword(password) ||
+      isEmpty(confirmPassword) ||
+      password !== confirmPassword
+    ) {
+      setIsloading(false);
+      return alert("All fields are required");
+    }
 
     const data = {
       first_name: firstName,
@@ -21,12 +48,37 @@ const RegisterForm = () => {
       phone,
       username,
       password,
+      confirm_password: confirmPassword,
     };
 
     console.log(data);
+    console.log(URLs);
+
+    try {
+      const response = await fetch(URLs.baseAccountURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const res = await response.json();
+
+      console.log(res);
+      if (!res.status) {
+        setIsloading(false);
+        return alert(res.message);
+      }
+
+      setIsloading(false);
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
-    <form className="form form--auth" onSubmit={handleRegisterSubmit}>
+    <>
+    {isLoading && <Loader></Loader>}
+        <form className="form form--auth" onSubmit={handleRegisterSubmit}>
       <h2 className="form__heading form__heading--auth">Register Portal</h2>
       <AuthTextBox
         type={"text"}
@@ -108,6 +160,7 @@ const RegisterForm = () => {
         </NavLink>
       </p>
     </form>
+    </>
   );
 };
 

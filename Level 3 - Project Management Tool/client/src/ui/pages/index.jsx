@@ -1,1 +1,6 @@
 export {default as LandingPage} from "./LandingPage/LandingPage"
+export {default as Dashboard} from "./Dashboard/Dashboard"
+export {default as CreateProjectPage} from "./CreateProjectPage/CreateProjectPage"
+export {default as AddTasks} from "./AddTasks/AddTasks"
+export {default as ViewProjectPage} from "./ViewProjectPage/ViewProjectPage"
+export {default as Logout} from "./Logout/Logout"

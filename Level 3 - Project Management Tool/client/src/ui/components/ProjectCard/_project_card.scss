@@ -1,0 +1,105 @@
+.project-card{
+    // min-height: 10rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    gap: 1rem;
+    width: 100%;
+    height: fit-content;
+    // min-height: 15rem;
+    
+    
+    
+    &__planning{
+        $color: $color-main; // develop
+        $color: rgb(255, 255, 0); //planning
+        $color: rgb(21, 255, 0); //test
+        $color: rgb(255, 0, 0); // drop
+        border: 2px solid $color; 
+        background-image: linear-gradient(to right, $color 1rem, transparent 1rem);
+        color: darken($color, 40); 
+    }
+
+
+
+
+    &__name{
+        font-size: 2rem;
+        text-wrap:nowrap;
+        overflow: hidden;
+        // max-width: 100%;
+        text-overflow: ellipsis;
+    }
+
+    &__desc{
+        font-size: 1.5rem;
+        line-height: 2rem;
+        height: 4rem;
+        text-wrap: wrap;
+        word-break: break-all;
+        overflow: hidden;
+        // max-width: 100%;
+        text-overflow: ellipsis;
+    }
+
+    &__dates{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__date{
+        font-size: 1.3rem;
+        text-transform: capitalize;
+    }
+    &__creator{
+        font-size: 1.3rem;
+        text-transform: capitalize;
+    }
+
+    &__row{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__btn-group{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__btn{
+        font-size: 0rem;
+        border-radius: 1rem;
+        padding: 0.5rem;
+        font-weight: 400;
+        aspect-ratio: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &--neutral{
+            background-color: $color-main;
+            color: rgb(231, 244, 255);
+        }
+        &--danger{
+            background-color: red;
+            color: rgb(231, 244, 255);
+        }
+        &--safe{
+            background-color: rgb(21, 255, 0);
+            color: rgb(231, 244, 255);
+        }
+
+    }
+
+
+
+}

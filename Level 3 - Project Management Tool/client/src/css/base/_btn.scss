@@ -5,3 +5,27 @@
     text-transform: capitalize;
     text-align: center;
 }
+
+
+.btn3d{
+    $color: $color-accent;
+    border-radius: 500rem;
+    background-image: linear-gradient(to bottom right, $color-accent-dark, $color-accent);
+    border: 2px solid $color-accent;
+    color: $color-accent-light;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    outline: 2px solid transparent;
+    transition: 0.1s ease-in-out;
+
+    &:hover, &:focus{
+        outline: 2px solid $color-accent;
+        outline-offset: 3px;
+    }
+    &:active{
+        outline: 0px solid $color-accent;
+        outline-offset: 0px;
+    }
+}

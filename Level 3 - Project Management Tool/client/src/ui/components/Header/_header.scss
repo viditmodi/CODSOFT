@@ -1,0 +1,55 @@
+.header{
+    $color-bg: $color-main-dark;
+    width: 100%;
+    height: fit-content;
+    min-height: 7rem;
+    background-image: linear-gradient(to right bottom, darken($color-bg, 20), darken($color-bg, 5));
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem 2rem;
+    // position: sticky;
+    top: 0;
+
+    &__container{
+        width:100%;
+        max-width: 30rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__logo-container{
+        width: 20%;
+        aspect-ratio: 1;
+
+    }
+
+    &__logo{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        filter: drop-shadow(0 0 2px  1px white);
+    }
+
+    &__webname{
+        font-size: 3rem;
+        font-family: $font-title;
+        font-weight: 500;
+        color: white;
+    }
+
+
+    &__btn{
+        padding: 0rem 1rem;
+        aspect-ratio: 1;
+        border-radius: 1rem;
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        // transform: translateY(-50%);
+
+    }
+}

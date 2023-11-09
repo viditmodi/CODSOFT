@@ -1,0 +1,26 @@
+.grid-container{
+    display: grid;
+    grid-template-columns: 60% 40%;
+    // grid-template-columns: 3fr 2fr;
+    height: 100dvh;
+    // background-color: rgb(50, 63, 63);
+    
+    
+    
+    @include mobile{
+        grid-template-columns: 1fr;
+
+    }
+
+
+    &__left{
+        // background-color: rgb(255, 255, 255);
+        background-color: hsl(0, 0%, 85%);
+        width: 100%;
+        // border: 1px solid;
+    }
+    &__right{
+        background-color: hsl(0, 0%, 90%);
+        overflow-y: scroll;
+    }
+}

@@ -1,0 +1,22 @@
+.dashboard{
+    
+
+
+    &__profile{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        place-items: center;
+        gap: 2rem;
+        text-align: left;
+        padding: 4rem;
+        background-color: hsl(0, 0%, 85%);
+    }
+    &__name{
+        text-transform: capitalize;
+    }
+    &__text{
+        text-align: left;
+        width: 100%;
+
+    }
+}

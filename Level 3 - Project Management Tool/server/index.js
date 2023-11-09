@@ -2,6 +2,9 @@ require("dotenv").config()
 const express = require("express")
 const cors = require("cors")
 const {connectToServer, clearAllCollections} = require("./config/db.config")
+const accountsRouter = require("./routes/accounts.routes")
+const projectsRouter = require("./routes/projects.routes")
+const tasksRouter = require("./routes/tasks.routes")
 
 const app = express()
 const port = process.env.PORT;
@@ -19,7 +22,9 @@ app.delete("/connection/reset", async (req, res)=>{
 })
 
 
-
+app.use("/account", accountsRouter)
+app.use("/project", projectsRouter)
+app.use("/task", tasksRouter)
 
 
 
