@@ -159,7 +159,7 @@ const CreateProjectPage = () => {
           Your projects
         </h2>
         <div className="create-project__list">
-          {projectList.length === 0 && <h1>no projects</h1>}
+          {projectList.length === 0 && <h1 className="default--text">no projects</h1>}
           {projectList.length > 0 &&
             projectList.map((project, index) => {
               return (

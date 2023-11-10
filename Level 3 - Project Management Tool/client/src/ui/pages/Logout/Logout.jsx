@@ -35,7 +35,7 @@ const Logout = () => {
     //   if (isLogout) {
     // }
   }, []);
-  return <div>Logging Out</div>;
+  return <div className="default--text">Logging Out</div>;
 };
 
 export default Logout;

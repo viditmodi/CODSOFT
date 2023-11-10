@@ -22,5 +22,12 @@
     &__right{
         background-color: hsl(0, 0%, 90%);
         overflow-y: scroll;
+        
+        @include mobile{
+            // grid-template-columns: 1fr;
+            overflow-y: visible;
+    
+        }
+
     }
 }

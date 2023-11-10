@@ -187,7 +187,7 @@ const AddTasks = () => {
           current tasks
         </h2>
         <div className="create-project__list">
-          {taskList.length === 0 && <h1>no tasks</h1>}
+          {taskList.length === 0 && <h1 className="default--text">no tasks</h1>}
           {taskList.length > 0 &&
             taskList.map((task, index) => {
               return (

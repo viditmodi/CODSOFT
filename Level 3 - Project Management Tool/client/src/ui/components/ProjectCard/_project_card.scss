@@ -12,16 +12,20 @@
     // min-height: 15rem;
     
     
+    $color: $color-main;
+    border: 2px solid $color; 
+    background-image: linear-gradient(to right, $color 1rem, transparent 1rem);
+    color: darken($color, 40); 
     
-    &__planning{
-        $color: $color-main; // develop
-        $color: rgb(255, 255, 0); //planning
-        $color: rgb(21, 255, 0); //test
-        $color: rgb(255, 0, 0); // drop
-        border: 2px solid $color; 
-        background-image: linear-gradient(to right, $color 1rem, transparent 1rem);
-        color: darken($color, 40); 
-    }
+    // &__planning{
+    //     $color: $color-main; // develop
+    //     // $color: rgb(255, 255, 0); //planning
+    //     // $color: rgb(21, 255, 0); //test
+    //     // $color: rgb(255, 0, 0); // drop
+    //     border: 2px solid $color; 
+    //     background-image: linear-gradient(to right, $color 1rem, transparent 1rem);
+    //     color: darken($color, 40); 
+    // }
 
 
 
