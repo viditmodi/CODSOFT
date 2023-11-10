@@ -3,6 +3,7 @@ import { Loader, TaskCard } from "../../components";
 import URLs from "../../../js/apiURLs";
 import { PushButton } from "../../base_components";
 import { useNavigate } from "react-router-dom";
+import { checkLoginStatus } from "../../../js/auth";
 
 const ViewProjectPage = () => {
 
@@ -16,6 +17,12 @@ const ViewProjectPage = () => {
 
   useEffect(() => {
     setIsloading(true);
+    checkLoginStatus().then((res) => {
+      // console.log(res);
+      if(!res){
+        navigate("/login")
+      }
+    });
     const queryParams = new URLSearchParams(window.location.search);
     const ID = queryParams.get("id");
     console.log(ID);
@@ -34,7 +41,7 @@ const ViewProjectPage = () => {
         setIsloading(false);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [navigate]);
 
   const removeTaskFromList = (task_id) => {
     const taskArray = taskList.filter((task) => task.task_id !== task_id);

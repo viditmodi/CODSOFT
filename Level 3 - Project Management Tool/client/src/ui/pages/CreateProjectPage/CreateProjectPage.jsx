@@ -4,6 +4,7 @@ import URLs from "../../../js/apiURLs";
 import { fetchUserData } from "../../../js/localstorage";
 import { Loader, ProjectCard } from "../../components";
 import { useNavigate } from "react-router-dom";
+import { checkLoginStatus } from "../../../js/auth";
 
 const CreateProjectPage = () => {
   const navigate = useNavigate();
@@ -34,6 +35,12 @@ const CreateProjectPage = () => {
 
   useEffect(() => {
     setIsLoading(true)
+    checkLoginStatus().then((res) => {
+      // console.log(res);
+      if(!res){
+        navigate("/login")
+      }
+    });
     const userdata = fetchUserData();
     setUserData(userdata);
     fetch(URLs.projectListURL + `?username=${userdata.username}`)
@@ -45,7 +52,7 @@ const CreateProjectPage = () => {
         setIsLoading(false)
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [navigate]);
 
   const handleProjectCreation = async (e) => {
     setIsLoading(true)

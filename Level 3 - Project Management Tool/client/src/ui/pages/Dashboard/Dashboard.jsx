@@ -2,14 +2,23 @@ import React, { useEffect, useState } from "react";
 import { fetchUserData } from "../../../js/localstorage";
 import URLs from "../../../js/apiURLs";
 import { Loader, ProjectCard } from "../../components";
+import { checkLoginStatus } from "../../../js/auth";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate()
   const [projectList, setProjectList] = useState([]);
   const [userData, setUserData] = useState(undefined);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
+    checkLoginStatus().then((res) => {
+      // console.log(res);
+      if(!res){
+        navigate("/login")
+      }
+    });
     const userdata = fetchUserData();
     setUserData(userdata);
     fetch(URLs.joinedProjectListURL + `?username=${userdata.username}`)
@@ -21,7 +30,7 @@ const Dashboard = () => {
         setIsLoading(false);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [navigate]);
 
   const removeProjectFromList = (project_id) => {
     const projectArray = projectList.filter(

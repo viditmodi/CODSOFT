@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { PushButton } from "../../base_components";
 import URLs from "../../../js/apiURLs";
 import { Loader, TaskCard } from "../../components";
-// import { useNavigate } from 'react-router-dom'
+import { checkLoginStatus } from "../../../js/auth";
+import { useNavigate } from 'react-router-dom'
 
 const AddTasks = () => {
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const [projectID, setProjectID] = useState("");
 
@@ -41,6 +42,12 @@ const AddTasks = () => {
 
   useEffect(() => {
     setIsLoading(true)
+    checkLoginStatus().then((res) => {
+      // console.log(res);
+      if(!res){
+        navigate("/login")
+      }
+    });
     const queryParams = new URLSearchParams(window.location.search);
     const ID = queryParams.get("id");
     console.log(ID);
@@ -58,7 +65,7 @@ const AddTasks = () => {
         setIsLoading(false)
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [navigate]);
 
   const handleTaskCreation = async (e) => {
     setIsLoading(true)
